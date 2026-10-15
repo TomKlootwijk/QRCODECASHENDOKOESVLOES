@@ -1,0 +1,156 @@
+{
+  "profile": {
+    "name": "xdtau-starry-membrane",
+    "version": "0.1.0",
+    "architecture": "XD-TAU v1.5",
+    "architectureSha256": "8dfae654435c035beefc3f9770cf6f51b55c0cef968071900142e4cf9b1cf0fd",
+    "cells": 32,
+    "hierarchyDepth": 5,
+    "dt": 0.04,
+    "tStar": 1,
+    "coreVolume": 1,
+    "reservoirVolume": 6,
+    "molarVolume": 0.8,
+    "speciesEnergy": [
+      1,
+      0,
+      0,
+      0
+    ],
+    "shellSpeciesEnergy": 0,
+    "coordinateFrame": "y-polar sphere, longitude atan2(z,x), upper-child split ownership",
+    "modelUnits": "declared normalized length, amount, energy and time units; no material calibration",
+    "stages": [
+      "tagged-events",
+      "freeze-conductance-and-rates",
+      "reservoir-exchange",
+      "reaction-1",
+      "reaction-2",
+      "reaction-3",
+      "deposition",
+      "geometry-output",
+      "observation"
+    ],
+    "numericalScheme": "binary64, exponential pair/subflows, ordered first-order Lie splitting",
+    "canonicalEncoding": "ASCII-key sorted JSON; ECMAScript finite-number serialization; UTF-8",
+    "randomness": "SHA-256 domain-separated counter samples; first 32 digest bits / 2^32",
+    "display": "nonphysical painterly chart, independent of conservation ledgers"
+  },
+  "environment": {
+    "node": "v22.16.0",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "testGroups": 24,
+  "allPassed": true,
+  "checks": [
+    {
+      "name": "SHA-256 vectors and block-boundary lengths",
+      "passed": true,
+      "vectors": 10,
+      "reference": "Node built-in crypto SHA-256"
+    },
+    {
+      "name": "Sorted canonical object encoding",
+      "passed": true
+    },
+    {
+      "name": "Domain-separated random access",
+      "passed": true
+    },
+    {
+      "name": "All equal-area representatives round trip",
+      "passed": true,
+      "cells": 32,
+      "totalSolidAngle": 12.566370614359181
+    },
+    {
+      "name": "Owned seam and poles",
+      "passed": true
+    },
+    {
+      "name": "Identical genesis is repeatable",
+      "passed": true
+    },
+    {
+      "name": "Different public seeds change genesis",
+      "passed": true
+    },
+    {
+      "name": "Input pixels affect content hash and phenotype",
+      "passed": true
+    },
+    {
+      "name": "Produced shell increases; inner radius fixed",
+      "passed": true
+    },
+    {
+      "name": "Closed amount and chemical/thermal energy ledgers",
+      "passed": true,
+      "ticks": 1200,
+      "amountResidual": 0,
+      "energyResidual": -5.684341886080802e-14
+    },
+    {
+      "name": "External feed is counted once in each source ledger",
+      "passed": true
+    },
+    {
+      "name": "Duplicate tag is idempotent",
+      "passed": true
+    },
+    {
+      "name": "Distinct equal XOR payloads cancel at the same epoch",
+      "passed": true
+    },
+    {
+      "name": "Merge is order independent",
+      "passed": true
+    },
+    {
+      "name": "Same-tag collision uses declared canonical maximum",
+      "passed": true
+    },
+    {
+      "name": "Late event replay equals known-ahead event replay",
+      "passed": true
+    },
+    {
+      "name": "Stable IDs survive mutation",
+      "passed": true
+    },
+    {
+      "name": "Full replay restores state identity",
+      "passed": true
+    },
+    {
+      "name": "Checkpoint round trip with replay validation",
+      "passed": true
+    },
+    {
+      "name": "Changed checkpoint bytes are detected",
+      "passed": true
+    },
+    {
+      "name": "Evolution leaves its input snapshot unchanged",
+      "passed": true
+    },
+    {
+      "name": "Step grouping does not change tick-indexed state",
+      "passed": true
+    },
+    {
+      "name": "All inventories stay nonnegative in a longer run",
+      "passed": true,
+      "ticks": 12000,
+      "minInventory": 0.000047656132580542864,
+      "amountResidual": 5.684341886080802e-14,
+      "energyResidual": 5.115907697472721e-13
+    },
+    {
+      "name": "Invalid external records fail at import, not inside evolution",
+      "passed": true
+    }
+  ],
+  "scope": "Finite regression checks, not a general theorem or cross-runtime/GPU rendering guarantee."
+}

@@ -1,0 +1,70 @@
+{
+  "checked_for_this_review": "2026-10-15",
+  "references": [
+    {
+      "topic": "SHA-256 / message digests",
+      "organization": "NIST",
+      "url": "https://csrc.nist.gov/pubs/fips/180-4/upd1/final"
+    },
+    {
+      "topic": "Blockchain definition / consensus",
+      "organization": "NIST",
+      "url": "https://csrc.nist.gov/glossary/term/blockchain"
+    },
+    {
+      "topic": "Canonical JSON",
+      "organization": "RFC Editor",
+      "url": "https://www.rfc-editor.org/rfc/rfc8785"
+    },
+    {
+      "topic": "Unity VFX Graph processing stages",
+      "organization": "Unity",
+      "url": "https://docs.unity3d.com/Packages/com.unity.visualeffectgraph@17.0/manual/GraphLogicAndPhilosophy.html"
+    },
+    {
+      "topic": "Unity VFX Graph requirements",
+      "organization": "Unity",
+      "url": "https://docs.unity3d.com/Packages/com.unity.visualeffectgraph@17.0/manual/System-Requirements.html"
+    },
+    {
+      "topic": "Unity VFX seed API",
+      "organization": "Unity",
+      "url": "https://docs.unity3d.com/Packages/com.unity.visualeffectgraph@17.0/manual/ComponentAPI.html"
+    },
+    {
+      "topic": "Unity GraphicsBuffer sampling",
+      "organization": "Unity",
+      "url": "https://docs.unity3d.com/Packages/com.unity.visualeffectgraph@17.0/manual/Operator-SampleBuffer.html"
+    },
+    {
+      "topic": "Unity SetGraphicsBuffer",
+      "organization": "Unity",
+      "url": "https://docs.unity3d.com/6000.1/Documentation/ScriptReference/VFX.VisualEffect.SetGraphicsBuffer.html"
+    },
+    {
+      "topic": "Unity HDRP bloom",
+      "organization": "Unity",
+      "url": "https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@17.0/manual/Post-Processing-Bloom.html"
+    },
+    {
+      "topic": "glTF runtime delivery",
+      "organization": "Khronos",
+      "url": "https://www.khronos.org/gltf/"
+    },
+    {
+      "topic": "glTF 2.0 compatibility target",
+      "organization": "Khronos",
+      "url": "https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html"
+    },
+    {
+      "topic": "USD time-varying volumes / OpenVDB",
+      "organization": "OpenUSD",
+      "url": "https://openusd.org/24.08/user_guides/schemas/usdVol/overview.html"
+    },
+    {
+      "topic": "Scientific images / optional time and channel axes",
+      "organization": "Open Microscopy Environment",
+      "url": "https://ngff.openmicroscopy.org/0.5/"
+    }
+  ]
+}

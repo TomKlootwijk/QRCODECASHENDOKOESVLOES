@@ -1,0 +1,260 @@
+{
+  "edition": "XD-TAU v1.4 finite reference and verification",
+  "seed": 20261013,
+  "runtime": {
+    "python": "3.13.5",
+    "numpy": "2.3.5"
+  },
+  "summary": {
+    "all_passed": true,
+    "exact_rational_checks": 14,
+    "floating_checks": 13,
+    "rational_integrated_steps": 2,
+    "float_integrated_steps": 64,
+    "rational_integrated_energy_residual": "0",
+    "float_integrated_energy_residual": 9.769962616701378e-15,
+    "float_max_stage_energy_residual": 6.428885201970047e-15
+  },
+  "exact_rational": [
+    {
+      "name": "general_fraction_midpoint_power_balance",
+      "passed": true,
+      "energy_residual": "0",
+      "heat": "54291492525185971/26757738300182400",
+      "supplied_work": "4948341343/7344630720"
+    },
+    {
+      "name": "semidefinite_Q_midpoint",
+      "passed": true,
+      "state": [
+        "2",
+        "-195"
+      ]
+    },
+    {
+      "name": "fraction_BE_pair_conservation_and_positive",
+      "passed": true,
+      "amount_residual": "0",
+      "new_amounts": [
+        "2216/493",
+        "1728/493"
+      ],
+      "scheme": "backward Euler pair; first order, not exact flow"
+    },
+    {
+      "name": "fraction_BE_catalytic_stoichiometry",
+      "passed": true,
+      "amount_residual": "0",
+      "scheme": "Lie composition of backward Euler substeps, first order"
+    },
+    {
+      "name": "fraction_quadratic_drag_momentum_and_heat",
+      "passed": true,
+      "momentum_residual": "0",
+      "energy_residual": "0"
+    },
+    {
+      "name": "rational_end_to_end_stage_order",
+      "passed": true,
+      "order": [
+        "events",
+        "coefficient_snapshot",
+        "midpoint_mechanics",
+        "quadratic_drag",
+        "reaction_BE",
+        "attenuation_BE",
+        "heat_pair_BE",
+        "species_pair_BE",
+        "neural_information",
+        "geometry_outputs",
+        "clock"
+      ],
+      "steps": 2
+    },
+    {
+      "name": "rational_end_to_end_exact_energy_source_ledger",
+      "passed": true,
+      "final_residual": "0",
+      "audited_stages": 22
+    },
+    {
+      "name": "rational_end_to_end_monomer_and_positivity",
+      "passed": true,
+      "amount_residual": "0",
+      "minimum_heat": 4.492877549391989,
+      "minimum_species": 0.013664972152588325,
+      "minimum_radius": 1.2114100362200313
+    },
+    {
+      "name": "rational_snapshot_round_trip_and_deterministic_replay",
+      "passed": true,
+      "round_trips": 2,
+      "serialized_bytes": 65301,
+      "representation": "reduced rational numerator/positive denominator, canonical hexadecimal integer strings"
+    },
+    {
+      "name": "forward_Euler_nonconservation_regression",
+      "passed": true,
+      "measured_energy_factor": "26/25",
+      "correct_energy_factor": "26/25",
+      "interpretation": "forward Euler adds spurious oscillator energy"
+    },
+    {
+      "name": "BE_pair_first_order_generator_consistency",
+      "passed": true,
+      "derivative_error_ratio": 1.9940828402366864,
+      "interpretation": "first-order consistency, not exact exponential evolution"
+    },
+    {
+      "name": "BE_reaction_first_order_generator_consistency",
+      "passed": true,
+      "derivative_error_ratio": 1.9992839377009688,
+      "generator": [
+        "-21/80",
+        "3/32",
+        "3/20",
+        "3/160"
+      ]
+    },
+    {
+      "name": "fraction_BE_attenuation_packet_balance",
+      "passed": true,
+      "energy_residual": "0",
+      "scheme": "first-order spatial backward Euler attenuation, not Beer-Lambert exponential"
+    },
+    {
+      "name": "BE_attenuation_first_order_generator_consistency",
+      "passed": true,
+      "derivative_error_ratio": 1.992063492063492,
+      "interpretation": "spatial consistency for dE/ds=-kappa E"
+    }
+  ],
+  "IEEE_float64": [
+    {
+      "name": "BE_pair_entropy_example",
+      "passed": true,
+      "entropy_increase": 2.876711775502274
+    },
+    {
+      "name": "float_midpoint_power_balance",
+      "passed": true,
+      "samples": 120,
+      "max_absolute_residual": 6.394884621840902e-14,
+      "tolerance": 2e-11
+    },
+    {
+      "name": "float_vector_drag_momentum_and_heat",
+      "passed": true,
+      "momentum_residual": 4.440892098500626e-16,
+      "energy_residual": 2.220446049250313e-16,
+      "heat": 0.567152940644292
+    },
+    {
+      "name": "float_optical_packet_energy",
+      "passed": true,
+      "energy_residual": 0.0,
+      "outgoing": 2.046048043766016,
+      "absorbed": 4.953951956233984
+    },
+    {
+      "name": "float_exact_pair_flow_energy_entropy",
+      "passed": true,
+      "energy_residual": 0.0,
+      "entropy_increase": 3.0926080438280845
+    },
+    {
+      "name": "float_exponential_reaction_stoichiometry",
+      "passed": true,
+      "amount_residual": 8.881784197001252e-16,
+      "composition": "exact elementary flows, Lie first order for combined kinetics"
+    },
+    {
+      "name": "periodic_Rusanov_nonlinear_Euler",
+      "passed": true,
+      "max_conserved_residual": 3.3306690738754696e-16,
+      "max_convex_weight": 0.65,
+      "minimum_density": 0.8569650543953171,
+      "minimum_internal_energy": 2.2944483537438947,
+      "h": 0.05332271703307728,
+      "scheme": "conservative Rusanov, first order; direct sigma=0.65 CFL time schedule"
+    },
+    {
+      "name": "compatible_viscous_momentum_heat",
+      "passed": true,
+      "total_energy_residual": 0.0,
+      "kinetic_plus_heat_residual": -8.673617379884035e-19,
+      "momentum_residual": 0.0,
+      "minimum_heat_deposit": 4.707810392025524e-05
+    },
+    {
+      "name": "float_end_to_end_actual_order",
+      "passed": true,
+      "steps": 64,
+      "order": [
+        "events",
+        "coefficient_snapshot_and_CFL",
+        "midpoint_mechanics",
+        "quadratic_drag",
+        "periodic_Rusanov_Euler",
+        "viscous_midpoint_heat",
+        "reaction_exponential",
+        "optical_exponential",
+        "heat_pair_exponential",
+        "species_pair_exponential",
+        "neural_information",
+        "geometry_outputs",
+        "clock"
+      ]
+    },
+    {
+      "name": "float_end_to_end_energy_source_ledger",
+      "passed": true,
+      "final_absolute_residual": 9.769962616701378e-15,
+      "max_stage_absolute_residual": 6.428885201970047e-15,
+      "audited_stages": 832,
+      "tolerance": 2e-11,
+      "source_work": 0.0033451047595472465,
+      "beam_in": 7.170405985637315,
+      "beam_out": 5.274293241930435
+    },
+    {
+      "name": "float_end_to_end_conservation_and_positive_states",
+      "passed": true,
+      "monomer_residual": 0.0,
+      "gas_mass_residual": 0.0,
+      "gas_momentum_residual": 8.326672684688674e-17,
+      "minimum_density": 0.8569650543953171,
+      "minimum_internal_energy_density": 2.338269512097701,
+      "minimum_body_heat": 4.008306650398396,
+      "minimum_species": 0.05031151047732162,
+      "minimum_derived_radius": 1.088589124192802,
+      "max_convex_weight": 0.6500000000000001,
+      "max_viscous_power_residual": 5.159277681725943e-18,
+      "final_physical_time": 3.0730311367017067
+    },
+    {
+      "name": "IEEE64_hex_round_trip_and_replay",
+      "passed": true,
+      "round_trips": 64,
+      "representation": "canonical float.hex / float.fromhex; array shape retained by nesting",
+      "scope": "same runtime and arithmetic evaluation order; no cross-platform libm bitwise claim"
+    },
+    {
+      "name": "BE_is_not_mislabeled_exact_exponential",
+      "passed": true,
+      "max_pair_difference": 0.7458553831691388,
+      "interpretation": "two distinct specified schemes, each with its own proven balance"
+    }
+  ],
+  "mathematical_scope": [
+    "Finite, explicitly instantiated split state-transition profiles; full printed stage ordering is exercised.",
+    "Fraction arithmetic proves the listed discrete examples exactly; general conservation/invertibility proofs are algebraic in the document.",
+    "Rational BE pair/reaction/attenuation maps are first-order consistency schemes, not exact ODE or optical flows.",
+    "Exponential pair/reaction/attenuation formulas are exact individual real-arithmetic subflows; the coupled Lie composition is first order.",
+    "Rusanov Euler uses a direct CFL time schedule; positivity applies on its ideal-gas admissible state domain.",
+    "Floating conservation is measured by residuals; no claim of bitwise exact physical conservation is made.",
+    "Finite snapshots losslessly serialize rational state or an already rounded float64 state, not arbitrary mathematical real numbers.",
+    "Derived geometry outputs carry no extra stored mechanical energy; the oscillator's storage coefficients remain fixed.",
+    "These tests do not establish continuum convergence, arbitrary-material well-posedness, 3-D Navier-Stokes global regularity, or Einstein-field existence."
+  ]
+}

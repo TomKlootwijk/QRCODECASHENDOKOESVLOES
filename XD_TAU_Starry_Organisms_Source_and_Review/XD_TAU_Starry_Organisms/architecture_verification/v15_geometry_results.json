@@ -1,0 +1,328 @@
+{
+  "edition": "v1.5 geometry closure",
+  "seed": 20261013,
+  "summary": {
+    "checks": 17,
+    "all_passed": true
+  },
+  "analytical_proofs": {
+    "primitive_domains": "Positive sphere radius, tetrahedron scale, cone radius and height; optional supplied rotations in SO(3). Sphere f=|q|-R is exact signed distance. Pyramid f=max_i(-w_i.q-L)/sqrt(3) imports conv{L*w_i}; cone f=max(-z,z-H,(hypot(x,y)+(R/H)z-R)/sqrt(1+(R/H)^2)) imports its finite cone. The latter two are membership fields; exact distance is obtained from their region.",
+    "klein_formula": "q=cos(u/2)sin(v)-sin(u/2)sin(2v); z=sin(u/2)sin(v)+cos(u/2)sin(2v); iota=c+ell*((a+q)cos(u),(a+q)sin(u),z). a>2, ell>0. v~v+2pi and (u+2pi,v)~(u,-v).",
+    "klein_immersion": "The radial factor a+q>a-2>0. iota_u has angular component ell*(a+q), while iota_v lies in the radial/vertical plane and has norm ell*sqrt(cos(v)^2+4cos(2v)^2)>=ell*sqrt(31)/8>0. Thus iota_u and iota_v are independent everywhere on the quotient. Self-intersections of the image do not invalidate immersion and are not claimed to be an embedding.",
+    "klein_distance": "The image S of the compact quotient is compact. D(x)=min_{u,v in [0,2pi]}|x-iota(u,v)| exists globally. For epsilon>0, A_epsilon={D<=epsilon}=cl{D<epsilon} is regular closed; f_epsilon=D-epsilon is a 1-Lipschitz membership field. Its canonical signed distance is d_A, generally not D-epsilon inside overlaps.",
+    "sample_bound": "Set Lu=ell*sqrt((a+sqrt(2))^2+1/2), Lv=ell*sqrt(5). They uniformly bound |iota_u| and |iota_v|. A rectangular M by N periodic grid, with twisted u-edge gluing, has an image point within delta=Lu*pi/M+Lv*pi/N of every image point. Therefore 0<=D_grid(x)-D(x)<=delta for every x. This is a uniform metric error bound, not a finite-sample topology proof.",
+    "mask_lookup": "For x!=0 use u=y/|x| and psi=atan2(z,x) mod 2pi, with psi=0 at both poles. For x=0 use canonical direction e_y. Alternate u in [-1,1] and psi in [0,2pi) bisections for d steps, assigning every split equality to the upper child; j_d is the resulting binary-word integer. Given finite symmetric zero-diagonal Q in F2^(N by N), set i=j_d mod N, j=(i+1+(n mod N)) mod N, M=(-1)^Q and m_n(x)=M_ij. The operation uses the pre-update Q and integer tick snapshot.",
+    "mask_seams": "For fixed depth and tick the mask is constant on finite direction cells. Its seams are dyadic constant-u conical surfaces and longitude half-planes, with codimension-two intersections and the origin as exceptional representatives. On open cells the weak derivative of m*f_K is m*grad(f_K). Across an oriented smooth seam it has jump measure (m_plus-m_minus)*f_K*n_S*H^2|S; use the locally BV product rule for the Lipschitz f_K=D_K-epsilon (or its sampled-distance approximation). No Clarke gradient is claimed at a discontinuous jump. The origin/pole ownership values alone add no three-dimensional distributional atom. Import the final raw field region before canonical exact CSG; raw negation is not presumed to respect arbitrary-field Boolean laws.",
+    "analog_domain": "0<rlo<r<rhi; rstar,r0,Rs,ell,p_shark,p_Len,b,alpha>0; rc>=ell; |eps|<1; |gamma|<1; |a_phase|<1; theta in R; k!=0; |zeta|<B<pi|k|. Triangular profile c_p(x)=abs((x mod p)-p/2)-p/4 is continuous, 1-Lipschitz, piecewise slopes +/-1.",
+    "analog_stages": "x=ln(r/rstar); s0=x+eps*c_p(x); rS=rstar*exp(s0); g=rc+ell*tanh((rS-rc)/ell); rg=r0*exp(alpha*(g-rc)); s=(ln(rg)-ln(rg(rlo)))/(ln(rg(rhi))-ln(rg(rlo))); t=frac(theta/(2pi)); lambda=(1-s,s*(1-t),s*t); Len=s+gamma*c_pLen(s); Theta=theta+a_phase*sin(theta-beta)*sin(2pi*Len); R=Rs*exp(b*Len); F=(R*cos(Theta),R*sin(Theta),zeta+k*Theta).",
+    "analog_monotonicity": "x+eps*c_p(x) is strictly increasing: differences >=(1-|eps|)*(x2-x1). Exponential, chamber, eruption and log normalization preserve strict monotonicity. Len differences >=(1-|gamma|)*(s2-s1). R is strictly increasing in r. Theta_theta>=1-|a_phase|>0 and Theta-theta is bounded, so Theta is an onto increasing map of R for each fixed r.",
+    "analog_inverse": "Recover R=hypot(X,Y), Len=ln(R/Rs)/b, then invert the increasing Len map, undo log normalization, eruption, chamber by atanh, and increasing Shark map. From principal phi=atan2(Y,X), n=nearest_integer((Z-k*phi)/(2pi*k)) is unique because |zeta|/(2pi|k|)<1/2. Theta=phi+2pi*n; invert its increasing phase map and set zeta=Z-k*Theta. Barycentric inversion gives s=lambda2+lambda3 and t=lambda3/s; retain theta turn for a flat barycentric view alone.",
+    "jacobian": "On every open differentiability cell of the Shark and Len profiles, det DF=R*R_r*Theta_theta>0. At triangular corners the ordinary classical Jacobian need not exist (zero gains can remove corners); the continuous map remains strictly monotone and is a piecewise C1 homeomorphism onto its image. The determinant is positive almost everywhere. This is a parameter-coordinate determinant. For the reference helical body chi0=(r*cos(theta),r*sin(theta),zeta+k*theta), det Dchi0=r and the physical deformation gradient is DF*(Dchi0)^(-1), giving physical volume ratio J=R*R_r*Theta_theta/r>0 a.e.",
+    "injectivity": "Equal Cartesian outputs give equal R and hence r. Equal planar phases give Theta1-Theta2=2pi*n. Equal Z implies zeta1-zeta2=-2pi*k*n. Since |zeta1-zeta2|<2B<2pi|k|, n=0; strict phase monotonicity gives theta1=theta2 and then zeta1=zeta2. Without the thickness bound, distinct turns can overlap in 3D.",
+    "feedback": "P contains explicit sphere/cone/pyramid union data. q_n=1[f_Pn(p_sample)<=0]; b_next=b_n XOR q_n; stored sphere radius R_next=1+(1/4)b_next. Inputs are read before next state is written. Positive radii follow directly for binary b. Entity ID and payload are copied unchanged; geometry evaluation actually changes the stored next program. This is one concrete self-referential specialization, not a claim of universal autopoiesis."
+  },
+  "checks": [
+    {
+      "name": "explicit_primitive_membership",
+      "passed": true
+    },
+    {
+      "name": "klein_twisted_quotient_gluing",
+      "passed": true,
+      "samples": 5000,
+      "u_value_residual": 1.3322676295501878e-15,
+      "v_value_residual": 8.881784197001252e-16,
+      "derivative_gluing_residual": 1.7763568394002505e-15
+    },
+    {
+      "name": "klein_immersion_derivatives",
+      "passed": true,
+      "derivative_fd_max_absolute": 4.3706362973239266e-09,
+      "dv_squared_norm_residual": 2.6645352591003757e-15,
+      "minimum_sample_cross_norm": 1.2510544654202977,
+      "general_dv_lower_bound": 0.6959705453537527,
+      "Lu": 4.470490059740494,
+      "Lv": 2.23606797749979
+    },
+    {
+      "name": "klein_sample_distance_bound_regression",
+      "passed": true,
+      "grid": [
+        64,
+        48
+      ],
+      "dense_grid": [
+        192,
+        144
+      ],
+      "global_analytical_bound": 0.36579497454710264,
+      "query_count": 48,
+      "maximum_coarse_dense_gap": 0.1069695058211481,
+      "maximum_image_to_grid_distance": 0.20813059149636715,
+      "scope": "D_grid is an upper approximation. Dense comparison is a regression, not exact distance."
+    },
+    {
+      "name": "mask_lookup_origin_poles_and_owned_boundaries",
+      "passed": true,
+      "origin_and_north": 170,
+      "south": 0,
+      "equator": 128,
+      "below_equator": 42,
+      "negative_x": 192,
+      "ownership": "split equality to upper child; poles psi=0; origin +y"
+    },
+    {
+      "name": "mask_lookup_phase_and_snapshot",
+      "passed": true,
+      "masks": [
+        1,
+        -1,
+        1,
+        1
+      ],
+      "indices": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "mask_lookup_symmetric_sign_matrix_and_snapshot_identity",
+      "passed": true,
+      "selected_indices": [
+        2,
+        2
+      ],
+      "source_sign": 1,
+      "source_snapshot_unchanged": true
+    },
+    {
+      "name": "raw_masked_klein_auxiliary_field",
+      "passed": true,
+      "initial_field": 1.5500312776574066,
+      "next_phase_field": -1.5500312776574066,
+      "sampled_distance": 1.7500312776574065,
+      "field_kind": "raw sign-modulated sampled membership approximation",
+      "uniform_distance_error_bound": 0.36579497454710264,
+      "scope": "Sign modulation is raw auxiliary semantics; canonical regional distance is separate."
+    },
+    {
+      "name": "analog_parameter_domain",
+      "passed": true,
+      "parameters": {
+        "rlo": 0.2,
+        "rhi": 4.0,
+        "rstar": 1.0,
+        "shark_period": 1.1,
+        "eps": 0.25,
+        "rc": 2.0,
+        "chamber_length": 1.0,
+        "eruption_radius": 0.8,
+        "alpha": 0.7,
+        "len_period": 0.4,
+        "gamma": 0.3,
+        "phase_a": 0.45,
+        "beta": 0.3,
+        "output_radius": 2.0,
+        "radial_gain": 0.8,
+        "pitch": 0.6,
+        "half_thickness": 0.8
+      }
+    },
+    {
+      "name": "composed_radial_strict_monotonicity_example",
+      "passed": true,
+      "samples": 10001,
+      "s_range": [
+        1.2502531592461524e-09,
+        0.9999999886982037
+      ],
+      "radius_range": [
+        2.0485806372155397,
+        4.3455275824342205
+      ]
+    },
+    {
+      "name": "analog_cartesian_inverse_with_turns",
+      "passed": true,
+      "samples": 1200,
+      "radius_max_absolute": 1.554312234475219e-14,
+      "theta_max_absolute": 5.684341886080802e-14,
+      "zeta_max_absolute": 4.241051954068098e-14,
+      "source_turn_range": [
+        -40,
+        40
+      ]
+    },
+    {
+      "name": "barycentric_chart_inverse_metadata",
+      "passed": true,
+      "maximum_absolute_error": 2.842170943040401e-14,
+      "scope": "Flat barycentric coordinates retain source turn; their triangle alone loses turn."
+    },
+    {
+      "name": "jacobian_on_differentiability_cells",
+      "passed": true,
+      "samples": 1200,
+      "skipped_near_corners": 0,
+      "maximum_fd_residual": 3.338394449770021e-08,
+      "maximum_determinant_identity_residual": 3.552713678800501e-15,
+      "minimum_determinant": 0.1250017012645922,
+      "scope": "Ordinary Jacobian is not asserted at triangular corners; positivity holds on cells/a.e."
+    },
+    {
+      "name": "inverse_negative_pitch_and_principal_seam",
+      "passed": true,
+      "samples": 100,
+      "maximum_absolute_error": 2.842170943040401e-14
+    },
+    {
+      "name": "thickness_bound_counterexample",
+      "passed": true,
+      "collision_residual": 8.326672684688674e-16,
+      "first_input": [
+        1.0,
+        0.0,
+        1.8849555921538759
+      ],
+      "second_input": [
+        1.0,
+        6.283185307179586,
+        -1.8849555921538759
+      ],
+      "scope": "Without B<pi|k| these distinct source turns can map to the same Cartesian point."
+    },
+    {
+      "name": "geometry_sample_XOR_program_feedback",
+      "passed": true,
+      "initial": {
+        "entity_id": "Tom-XDTAU-geometry-001",
+        "payload": {
+          "label": "retained entity",
+          "count": 7
+        },
+        "step": 0,
+        "bit": 1,
+        "sample_point": [
+          1.1,
+          0.0,
+          0.0
+        ],
+        "program": {
+          "operation": "union",
+          "sphere_radius": 1.25,
+          "sphere_center": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cone_radius": 0.75,
+          "cone_height": 2.0,
+          "cone_center": [
+            4.0,
+            0.0,
+            0.0
+          ],
+          "pyramid_scale": 0.5,
+          "pyramid_center": [
+            -4.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "final": {
+        "entity_id": "Tom-XDTAU-geometry-001",
+        "payload": {
+          "label": "retained entity",
+          "count": 7
+        },
+        "step": 3,
+        "bit": 0,
+        "sample_point": [
+          1.1,
+          0.0,
+          0.0
+        ],
+        "program": {
+          "operation": "union",
+          "sphere_radius": 1.0,
+          "sphere_center": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cone_radius": 0.75,
+          "cone_height": 2.0,
+          "cone_center": [
+            4.0,
+            0.0,
+            0.0
+          ],
+          "pyramid_scale": 0.5,
+          "pyramid_center": [
+            -4.0,
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "trace": [
+        {
+          "sampled_field": -0.1499999999999999,
+          "occupancy": 1,
+          "old_bit": 1,
+          "new_bit": 0,
+          "old_radius": 1.25,
+          "new_radius": 1.0
+        },
+        {
+          "sampled_field": 0.10000000000000009,
+          "occupancy": 0,
+          "old_bit": 0,
+          "new_bit": 0,
+          "old_radius": 1.0,
+          "new_radius": 1.0
+        },
+        {
+          "sampled_field": 0.10000000000000009,
+          "occupancy": 0,
+          "old_bit": 0,
+          "new_bit": 0,
+          "old_radius": 1.0,
+          "new_radius": 1.0
+        }
+      ]
+    },
+    {
+      "name": "geometry_feedback_snapshot_replay",
+      "passed": true
+    }
+  ],
+  "primary_formula_sources": [
+    {
+      "title": "UCI Virtual Math Museum: Klein Bottle",
+      "url": "https://webapps.math.uci.edu/~vmm/Surface/klein_bottle/klein_bottle.html",
+      "use": "Figure-eight formula; UCI swaps our u and v parameter names."
+    },
+    {
+      "title": "SageMath: common parametrized surfaces in 3D, Klein",
+      "url": "https://doc.sagemath.org/html/en/reference/riemannian_geometry/sage/geometry/riemannian_manifolds/surface3d_generators.html",
+      "use": "Established figure-eight parametrization; immersion proof and explicit radius domain are derived here."
+    }
+  ],
+  "scope": "General analytical arguments and finite regression results are separate. The chosen analog map is an explicit compatible completion of source vocabulary, not a recovered unique source implementation. The primitive max fields are membership fields; no numerical Klein samples establish exact continuum topology."
+}

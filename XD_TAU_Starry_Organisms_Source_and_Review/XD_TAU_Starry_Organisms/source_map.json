@@ -1,0 +1,155 @@
+{
+  "architecture": "Tom Klootwijk, XD-TAU v1.5, 71-page supplied PDF",
+  "sha256": "8dfae654435c035beefc3f9770cf6f51b55c0cef968071900142e4cf9b1cf0fd",
+  "application": "proposed starry-membrane/0.1.0",
+  "modules": [
+    {
+      "entity": "state-schema",
+      "file": "organism_core.js",
+      "pages": [
+        3,
+        31,
+        52
+      ],
+      "equations": [
+        "1.1",
+        "B.1",
+        "N.1"
+      ],
+      "implementation": "finite E/H/P/xi/b/F/O/C state; profile/encoding/source ledgers"
+    },
+    {
+      "entity": "spherical-index",
+      "file": "organism_core.js",
+      "pages": [
+        8,
+        45
+      ],
+      "equations": [
+        "6.1",
+        "6.2",
+        "6.3",
+        "J.1"
+      ],
+      "implementation": "owned depth-5 equal-area leaves, representatives and heap addresses"
+    },
+    {
+      "entity": "shell-region",
+      "file": "organism_core.js",
+      "pages": [
+        4,
+        26,
+        36,
+        49,
+        54
+      ],
+      "equations": [
+        "2.1",
+        "2.2",
+        "24.4b",
+        "D.1",
+        "O.12"
+      ],
+      "implementation": "local concentric sphere-difference program from produced shell amount"
+    },
+    {
+      "entity": "positive-exchange",
+      "file": "organism_core.js",
+      "pages": [
+        34
+      ],
+      "equations": [
+        "C.7",
+        "C.8"
+      ],
+      "implementation": "frozen-conductance convex pair exchange"
+    },
+    {
+      "entity": "reactions-and-deposition",
+      "file": "organism_core.js",
+      "pages": [
+        26,
+        35,
+        36
+      ],
+      "equations": [
+        "24.3",
+        "24.4",
+        "C.10",
+        "C.11",
+        "C.12",
+        "C.14"
+      ],
+      "implementation": "ordered exponential catalytic subflows and deposition"
+    },
+    {
+      "entity": "chemical-thermal-ledger",
+      "file": "organism_core.js",
+      "pages": [
+        35,
+        36,
+        52
+      ],
+      "equations": [
+        "C.13",
+        "D.5",
+        "N.1"
+      ],
+      "implementation": "declared exothermic species energy and shared amount/energy transfers"
+    },
+    {
+      "entity": "event-replay",
+      "file": "organism_core.js",
+      "pages": [
+        20,
+        31,
+        49
+      ],
+      "equations": [
+        "18.1",
+        "18.2",
+        "L.2"
+      ],
+      "implementation": "tag canonicalization, epoch filtering, XOR and feed events; late-event pure replay"
+    },
+    {
+      "entity": "painterly-display",
+      "file": "ui.js",
+      "pages": [
+        6,
+        13,
+        32
+      ],
+      "equations": [
+        "4.3",
+        "4.4",
+        "B.2"
+      ],
+      "implementation": "new nonphysical artistic observation adapter; not a physical deforming control volume"
+    },
+    {
+      "entity": "sha256-genesis",
+      "file": "organism_core.js",
+      "pages": [
+        22,
+        31
+      ],
+      "equations": [
+        "B.1"
+      ],
+      "implementation": "new public hash/seed adapter; not specified in the PDF and not blockchain consensus"
+    }
+  ],
+  "proposed_not_implemented": [
+    "native Unity executable",
+    "VFX Graph GPU adapter",
+    "HDR framebuffer",
+    "true volumetric imports",
+    "4D dataset imports",
+    "lineage reproduction",
+    "blockchain anchoring",
+    "full Shark-Geyser renderer",
+    "learned geometry",
+    "general CSG engine"
+  ]
+}

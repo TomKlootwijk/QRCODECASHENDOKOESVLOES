@@ -1,0 +1,270 @@
+{
+  "edition": "XD-TAU v1.5 events, coupling and temporal gate folding",
+  "summary": {
+    "all_passed": true,
+    "checks": 24,
+    "exact_rational_ledger_residual": "0",
+    "physical_ticks": 6,
+    "physical_stage_audits": 42
+  },
+  "checks": [
+    {
+      "name": "typed_AST_replace_and_wrap",
+      "passed": true
+    },
+    {
+      "name": "missing_path_is_identity",
+      "passed": true
+    },
+    {
+      "name": "exact_arrangement_regularized_contacts",
+      "passed": true,
+      "regularized_contact_cells": 0,
+      "boundary_point_in_union": true
+    },
+    {
+      "name": "AST_self_difference_and_boundary_occupancy",
+      "passed": true,
+      "self_difference_cells": 0
+    },
+    {
+      "name": "distinct_tags_same_XOR_payload_cancel",
+      "passed": true,
+      "once": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "twice": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "distinct_operations": 2
+    },
+    {
+      "name": "LWW_total_version_assignment",
+      "passed": true,
+      "winning_value": "11"
+    },
+    {
+      "name": "finite_log_join_semilattice",
+      "passed": true,
+      "delivery_orders": 6,
+      "distinct_tags": 5
+    },
+    {
+      "name": "canonical_same_tag_collision_resolution",
+      "passed": true,
+      "rule": "maximum full version/canonical record per tag"
+    },
+    {
+      "name": "late_noncommuting_edit_requires_pure_replay",
+      "passed": true,
+      "incremental_arrival_order_is_wrong": true,
+      "fixed_base_replay_equal": true
+    },
+    {
+      "name": "replayed_program_exact_geometry",
+      "passed": true
+    },
+    {
+      "name": "exact_rational_composition_energy_ledger",
+      "passed": true,
+      "final_residual": "0",
+      "audited_stages": 42,
+      "ticks": 6
+    },
+    {
+      "name": "causal_stage_order_and_positive_heat",
+      "passed": true,
+      "order": [
+        "events_and_parameter_work",
+        "geometry_and_parity_coefficients",
+        "midpoint_and_heat",
+        "rational_attenuation_BE",
+        "heat_pair_BE",
+        "derived_outputs",
+        "clock"
+      ],
+      "final_heat": [
+        4.273674065925091,
+        7.660610542006381
+      ]
+    },
+    {
+      "name": "activated_parity_and_geometry_couplings",
+      "passed": true,
+      "final_graph": [
+        1
+      ],
+      "final_geometry_response": "5/9",
+      "activated_graph_epoch": 4,
+      "geometry_rewrite_epoch": 3
+    },
+    {
+      "name": "late_log_full_physical_replay_converges",
+      "passed": true,
+      "delivery_orders": 24,
+      "fixed_initial_state": true,
+      "activated_by_integer_epoch": true
+    },
+    {
+      "name": "non_Zeno_fixed_clock_bound",
+      "passed": true,
+      "h": "1/5",
+      "horizon": "1",
+      "ticks_up_to_horizon": 6,
+      "assumption": "each integer epoch has finitely many events; h is fixed positive"
+    },
+    {
+      "name": "parity_surjection_kernel_exhaustive_N1",
+      "passed": true,
+      "N": 1,
+      "domain_dimension": 2,
+      "graph_dimension": 0,
+      "kernel_dimension": 2,
+      "domain_points": 4,
+      "image_points": 1,
+      "fiber_size": 4,
+      "kernel_basis_rank": 2
+    },
+    {
+      "name": "parity_surjection_kernel_exhaustive_N2",
+      "passed": true,
+      "N": 2,
+      "domain_dimension": 8,
+      "graph_dimension": 1,
+      "kernel_dimension": 7,
+      "domain_points": 256,
+      "image_points": 2,
+      "fiber_size": 128,
+      "kernel_basis_rank": 7
+    },
+    {
+      "name": "parity_linearity_all_N2_input_pairs",
+      "passed": true,
+      "input_pairs": 65536
+    },
+    {
+      "name": "parity_surjection_kernel_exhaustive_N3",
+      "passed": true,
+      "N": 3,
+      "domain_dimension": 18,
+      "graph_dimension": 3,
+      "kernel_dimension": 15,
+      "domain_points": 262144,
+      "image_points": 8,
+      "fiber_size": 32768,
+      "kernel_basis_rank": 15
+    },
+    {
+      "name": "folded_parity_gates_1",
+      "passed": true,
+      "reusable_gates": 1,
+      "operations": 18,
+      "cycles": 18,
+      "samples": 256
+    },
+    {
+      "name": "folded_parity_gates_2",
+      "passed": true,
+      "reusable_gates": 2,
+      "operations": 18,
+      "cycles": 9,
+      "samples": 256
+    },
+    {
+      "name": "folded_parity_gates_3",
+      "passed": true,
+      "reusable_gates": 3,
+      "operations": 18,
+      "cycles": 6,
+      "samples": 256
+    },
+    {
+      "name": "folded_parity_gates_12",
+      "passed": true,
+      "reusable_gates": 12,
+      "operations": 18,
+      "cycles": 2,
+      "samples": 256
+    },
+    {
+      "name": "folding_latency_endpoints",
+      "passed": true,
+      "one_gate_cycles": 18,
+      "abundant_gate_cycles": 2,
+      "timing_model": "one synchronous XOR per gate per cycle; retained virtual wire values; no measured wire delay"
+    }
+  ],
+  "parity_exhaustive": [
+    {
+      "N": 1,
+      "domain_points": 4,
+      "image_points": 1,
+      "kernel_dimension": 2
+    },
+    {
+      "N": 2,
+      "domain_points": 256,
+      "image_points": 2,
+      "kernel_dimension": 7
+    },
+    {
+      "N": 3,
+      "domain_points": 262144,
+      "image_points": 8,
+      "kernel_dimension": 15
+    }
+  ],
+  "folded_schedules": [
+    {
+      "gates": 1,
+      "cycles": 18,
+      "operations": 18
+    },
+    {
+      "gates": 2,
+      "cycles": 9,
+      "operations": 18
+    },
+    {
+      "gates": 3,
+      "cycles": 6,
+      "operations": 18
+    },
+    {
+      "gates": 12,
+      "cycles": 2,
+      "operations": 18
+    }
+  ],
+  "proofs": {
+    "parity_right_inverse": "Put Q_ij into A_ij for i<j and zero elsewhere; B=0. Then A+B+A^T+B^T=Q.",
+    "parity_kernel": "The map has domain dimension 2N^2 and image dimension N(N-1)/2, so kernel dimension (3N^2+N)/2. A basis consists of (Eij,Eij) and (Sij,0), with Sij the symmetric diagonal/off-diagonal basis.",
+    "C_only_kernel": "For C=A+B, C->C+C^T has the symmetric-matrix kernel of dimension N(N+1)/2; its image is all symmetric zero-diagonal matrices.",
+    "log_join": "Finite per-tag canonical maximum is associative, commutative and idempotent. Pure materialization is a deterministic function of that map and its fixed base.",
+    "folding": "Each gate operation has the same operands as the parity DAG. Precedence supplies their values before execution; induction over cycles preserves every DAG value despite gate reuse.",
+    "non_Zeno": "With fixed h>0 and finitely many events per integer epoch, a finite physical interval contains finitely many epochs and events. No runtime filter is used."
+  },
+  "scope": [
+    "The AST primitives are rational boxes and axis half-spaces; finite arrangement evaluation implements their exact regular-closed Boolean semantics.",
+    "The sampled geometry response is an explicit finite observation, not exact optical path length, volume, distance or arbitrary black-box geometry.",
+    "Rational attenuation and heat exchange are backward-Euler consistency maps, not exact exponential flows.",
+    "The exact physical source ledger includes event-induced stiffness work, port work and incoming/outgoing beam energy.",
+    "Physical replica convergence here is fixed-base replay of the same activated event history, not incremental arrival-order evolution.",
+    "The gate schedule proves logical functional equivalence and its declared synchronous latency, not measured RC behavior or a hardware speedup.",
+    "The general local/global composition and continuation assumptions are stated in v15_composition_audit.md."
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "python": "3.13.5",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "runs": [
+    {
+      "script": "v14_csg_checks.py",
+      "returncode": 0,
+      "seconds": 1.091,
+      "stdout": "{\n  \"passed\": true,\n  \"checks\": 15,\n  \"exact_regions\": 16,\n  \"ordered_triples\": 4096,\n  \"results\": \"/mnt/data/xdtau_review/rerun/v14_csg_results.json\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "script": "v14_reference.py",
+      "returncode": 0,
+      "seconds": 0.962,
+      "stdout": "{\n  \"all_passed\": true,\n  \"exact_rational_checks\": 14,\n  \"floating_checks\": 13,\n  \"rational_integrated_steps\": 2,\n  \"float_integrated_steps\": 64,\n  \"rational_integrated_energy_residual\": \"0\",\n  \"float_integrated_energy_residual\": 9.769962616701378e-15,\n  \"float_max_stage_energy_residual\": 6.428885201970047e-15\n}\nResults: /mnt/data/xdtau_review/rerun/v14_reference_results.json\n",
+      "stderr": ""
+    },
+    {
+      "script": "v15_geometry.py",
+      "returncode": 0,
+      "seconds": 1.232,
+      "stdout": "{\n  \"result\": \"/mnt/data/xdtau_review/rerun/v15_geometry_results.json\",\n  \"checks\": 17,\n  \"all_passed\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "script": "v15_events_coupling.py",
+      "returncode": 0,
+      "seconds": 1.43,
+      "stdout": "{\n  \"all_passed\": true,\n  \"checks\": 24,\n  \"exact_rational_ledger_residual\": \"0\",\n  \"physical_ticks\": 6,\n  \"physical_stage_audits\": 42\n}\nResults: /mnt/data/xdtau_review/rerun/v15_events_coupling_results.json\n",
+      "stderr": ""
+    },
+    {
+      "script": "v15_domain_profiles.py",
+      "returncode": 0,
+      "seconds": 0.664,
+      "stdout": "{\n  \"suite\": \"XD-TAU v1.5 physical domain bridges\",\n  \"all_passed\": true,\n  \"checks\": [\n    {\n      \"name\": \"closed_absorption_emission_scattering\",\n      \"passed\": true,\n      \"steps\": 300,\n      \"max_energy_residual\": 3.552713678800501e-15,\n      \"minimum_inventory\": 1.0992226108143046,\n      \"proof\": \"positive elementary maps and telescoping balances; not continuum convergence\"\n    },\n    {\n      \"name\": \"physical_to_plume_diagnostic\",\n      \"passed\": true,\n      \"samples\": 256,\n      \"translation_equivariance_residual\": 1.7763568394002505e-15,\n      \"cap_radius\": 1.3631042893263026,\n      \"cap_tube_radius\": 0.6253116607059725,\n      \"scope\": \"derived geometric diagnostic of supplied fluid state\"\n    },\n    {\n      \"name\": \"discrete_scale_conductivity\",\n      \"passed\": true,\n      \"max_residual\": 3.3306690738754696e-16,\n      \"q\": 23.140692632779267,\n      \"scope\": \"conductivity coefficient only; not scale invariance of every solution\"\n    },\n    {\n      \"name\": \"scale_patterned_stationary_heat_entropy\",\n      \"passed\": true,\n      \"quadrature_errors\": [\n        2.439168658718849e-10,\n        6.09793049388685e-11,\n        1.5244774193012844e-11\n      ],\n      \"refinement_ratios\": [\n        3.999994196660827,\n        4.0000136549623155\n      ],\n      \"scope\": \"quadrature example; differential and boundary identities proved in document\"\n    },\n    {\n      \"name\": \"reconfigurable_orbital_formation\",\n      \"passed\": true,\n      \"equation_residual\": 5.551115123125783e-17,\n      \"finite_difference_power_residual\": 2.949873678659287e-11,\n      \"time_samples\": 100,\n      \"scope\": \"prescribed controlled trajectory with exact analytic acceleration and work identity\"\n    },\n    {\n      \"name\": \"passive_geometry_dependent_matched_beam\",\n      \"passed\": true,\n      \"max_power_identity_residual\": 8.881784197001252e-16,\n      \"sampled_competitor_margin\": 0.0034418776011733154,\n      \"channel_norm\": 0.6,\n      \"transmitted_power\": 2.0,\n      \"received_power\": 0.72,\n      \"general_proof\": \"Cauchy-Schwarz; normalized channel norm eta gives passive received power P eta^2\"\n    },\n    {\n      \"name\": \"zero_channel_and_zero_power_definitions\",\n      \"passed\": true,\n      \"zero_channel_output\": 0.0,\n      \"zero_power_output\": 0.0\n    },\n    {\n      \"name\": \"canonical_degenerate_graph_eigenmode\",\n      \"passed\": true,\n      \"eigenmode\": [\n        0.8164965809277261,\n        -0.408248290463863,\n        -0.408248290463863\n      ],\n      \"eigenvalue\": 3.0,\n      \"residual\": 2.220446049250313e-16,\n      \"proof\": \"first nonzero canonical-basis projection into selected eigenspace fixes degeneracy and sign\"\n    },\n    {\n      \"name\": \"positive_exact_radius_fitting_contraction\",\n      \"passed\": true,\n      \"exact_error_factor\": \"3486784401/1099511627776\",\n      \"iterations\": 20,\n      \"scope\": \"explicit convex quadratic radius objective; not generic nonconvex fitting convergence\"\n    }\n  ],\n  \"check_count\": 9\n}\n",
+      "stderr": ""
+    },
+    {
+      "script": "v15_physical.py",
+      "returncode": 0,
+      "seconds": 0.922,
+      "stdout": "{\n  \"output\": \"/mnt/data/xdtau_review/rerun/v15_physical_results.json\",\n  \"all_checks_passed\": true,\n  \"thermo_energy_rate_residual\": 1.7763568394002505e-15,\n  \"ALE_amount_residuals\": [\n    7.771561172376096e-16,\n    2.7755575615628914e-16,\n    1.7763568394002505e-15\n  ],\n  \"ALE_GCL_residual\": 0.0,\n  \"ALE_min_internal_energy\": 2.1320426177580485,\n  \"level_set_advection_residual\": 3.566591466608315e-15,\n  \"shell_modal_energy_residual\": 2.9976021664879227e-15,\n  \"ADM_discrete_residuals\": [\n    7.632783294297951e-15,\n    3.82055498349132e-14,\n    1.9682866447823244e-13\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "script": "v14_adm_shell_checks.py",
+      "returncode": 0,
+      "seconds": 1.014,
+      "stdout": "{\n  \"output\": \"/mnt/data/xdtau_review/rerun/v14_adm_shell_results.json\",\n  \"passed\": true,\n  \"exact_flrw_identities\": 18,\n  \"general_shift_residual\": \"0\",\n  \"shell_total_residual\": \"0\",\n  \"shell_face_signs\": 6,\n  \"numerical_max_amount_residual\": 5.684341886080802e-14,\n  \"RK4_observed_difference_ratio\": 16.26406429391504\n}\n",
+      "stderr": ""
+    },
+    {
+      "script": "validate_xdtau_v13.py",
+      "returncode": 0,
+      "seconds": 1.331,
+      "stdout": "{\n  \"edition\": \"1.3\",\n  \"date\": \"2026-10-13\",\n  \"seed\": 20261013,\n  \"description\": \"Equation-level examples across geometry, physical accounting, graph/quantum adapters and distributed algebra.\",\n  \"checks\": [\n    {\n      \"name\": \"smooth_CSG_gradient\",\n      \"passed\": true,\n      \"samples\": 20000,\n      \"max_error\": 4.462907821078943e-10\n    },\n    {\n      \"name\": \"smooth_CSG_duality\",\n      \"passed\": true,\n      \"samples\": 20000\n    },\n    {\n      \"name\": \"regularized_self_difference\",\n      \"passed\": true,\n      \"samples\": 20000\n    },\n    {\n      \"name\": \"empty_full_distance\",\n      \"passed\": true,\n      \"empty_occupancy\": 0,\n      \"full_occupancy\": 1\n    },\n    {\n      \"name\": \"binary_equal_area_profile\",\n      \"passed\": true,\n      \"points\": 20000,\n      \"depth\": 14,\n      \"max_surface_error_rad\": 0.12231798495594237,\n      \"max_cell_radius_bound_rad\": 0.14962521619915337,\n      \"max_cell_area_residual\": 1.1275702593849246e-17\n    },\n    {\n      \"name\": \"profile_seam_poles\",\n      \"passed\": true,\n      \"points\": 4\n    },\n    {\n      \"name\": \"continuous_parameter_fit\",\n      \"passed\": true,\n      \"initial_loss\": 0.48999999999999994,\n      \"final_loss\": 2.3218068557773255e-06,\n      \"final_radius\": 1.4984762523648,\n      \"steps\": 12\n    },\n    {\n      \"name\": \"simultaneous_bit_update\",\n      \"passed\": true,\n      \"input_bits\": [\n        0,\n        1,\n        1,\n        0\n      ],\n      \"output_bits\": [\n        1,\n        1,\n        0,\n        0\n      ]\n    },\n    {\n      \"name\": \"finite_volume_internal_flux\",\n      \"passed\": true,\n      \"total_before\": 16.0,\n      \"total_after\": 16.0\n    },\n    {\n      \"name\": \"spherical_shell_volume\",\n      \"passed\": true,\n      \"total_volume\": 79.58701389094142,\n      \"residual\": 0.0\n    },\n    {\n      \"name\": \"drag_power\",\n      \"passed\": true,\n      \"samples\": 10000,\n      \"max_residual\": 3.552713678800501e-15\n    },\n    {\n      \"name\": \"linear_drag_heat_balance\",\n      \"passed\": true,\n      \"kinetic_before\": 5.25,\n      \"kinetic_after\": 3.9678646426425592,\n      \"heat_gain\": 1.2821353573574408\n    },\n    {\n      \"name\": \"Coriolis_zero_work\",\n      \"passed\": true,\n      \"samples\": 10000,\n      \"max_residual\": 1.9984014443252818e-15\n    },\n    {\n      \"name\": \"optical_absorption_balance\",\n      \"passed\": true,\n      \"incident\": 7.0,\n      \"transmitted\": 3.021973664003558,\n      \"absorbed\": 3.978026335996442\n    },\n    {\n      \"name\": \"port_Hamiltonian_energy\",\n      \"passed\": true,\n      \"samples\": 1000,\n      \"max_residual\": 8.881784197001252e-16\n    },\n    {\n      \"name\": \"packed_tree_rank_select\",\n      \"passed\": true,\n      \"nodes\": 5,\n      \"shape_bits\": 10\n    },\n    {\n      \"name\": \"replica_join\",\n      \"passed\": true,\n      \"merge_orders\": 6,\n      \"distinct_ops\": 4\n    },\n    {\n      \"name\": \"graph_state_commutation\",\n      \"passed\": true,\n      \"graphs\": 1024,\n      \"qubits_per_graph\": 12,\n      \"generator_rank\": 12\n    },\n    {\n      \"name\": \"bent_channel_Walsh\",\n      \"passed\": true,\n      \"inputs\": 16,\n      \"Walsh_magnitudes\": [\n        4\n      ],\n      \"ones\": 6\n    },\n    {\n      \"name\": \"hyperbolic_focus_isometry\",\n      \"passed\": true,\n      \"pairs\": 1000,\n      \"max_distance_residual\": 3.9968028886505635e-15\n    },\n    {\n      \"name\": \"periodic_phase_adapter\",\n      \"passed\": true,\n      \"angles\": 1000,\n      \"max_seam_residual\": 1.7763568394002505e-15,\n      \"min_derivative\": 0.6500001937148091\n    },\n    {\n      \"name\": \"log_time_chain_rule\",\n      \"passed\": true,\n      \"samples\": 1000\n    },\n    {\n      \"name\": \"graph_diffusion_quadratic\",\n      \"passed\": true,\n      \"quadratic\": 13.0,\n      \"total_signal_derivative\": 0.0\n    },\n    {\n      \"name\": \"reaction_stoichiometric_balance\",\n      \"passed\": true,\n      \"reaction_columns\": 3,\n      \"total_amount_derivative\": -9.71445146547012e-17\n    },\n    {\n      \"name\": \"scale_patterned_thermal_channel\",\n      \"passed\": true,\n      \"radii\": 10000,\n      \"max_scale_residual\": 3.1086244689504383e-15,\n      \"min_entropy_production_density\": 8.959353997567155e-08\n    },\n    {\n      \"name\": \"barycentric_logpolar_inverse\",\n      \"passed\": true,\n      \"radii\": 1000,\n      \"max_radius_residual\": 8.881784197001252e-16,\n      \"max_turn_residual\": 1.1102230246251565e-16\n    },\n    {\n      \"name\": \"chamber_inverse\",\n      \"passed\": true,\n      \"radii\": 1000,\n      \"max_residual\": 7.105427357601002e-15\n    }\n  ],\n  \"passed\": 27,\n  \"failed\": 0\n}\n",
+      "stderr": ""
+    }
+  ],
+  "numpy": "2.3.5",
+  "architecture_source": {
+    "file": "Tom_Klootwijk_XD-TAU_Architectural_Paradigm_v1.5_Complete_Specification(1).pdf",
+    "pages": 71,
+    "sha256": "8dfae654435c035beefc3f9770cf6f51b55c0cef968071900142e4cf9b1cf0fd",
+    "embedded_files": 18,
+    "python_scripts": 8
+  },
+  "scope": "Independent rerun of all eight embedded Python scripts, not independent proof checking of every theorem, a 3D/4D graphics benchmark, or validation of arbitrary application couplings.",
+  "embedded_manifest": [
+    {
+      "file": "v14_adm_shell_checks.py",
+      "bytes": 20476,
+      "sha256": "36fa3e830026592855fae582551baf5fd06649a22234682628423a2f4f04e44c"
+    },
+    {
+      "file": "v14_adm_shell_results.json",
+      "bytes": 16126,
+      "sha256": "704cf9964b20eacde1c657f70221e60e0424bdf44ce20744b8bef15e84f79f07"
+    },
+    {
+      "file": "v14_csg_checks.py",
+      "bytes": 20253,
+      "sha256": "860da20498902f41b8eb41809223eba6c274eaefe20e88d20666480a8dbb7f4f"
+    },
+    {
+      "file": "v14_csg_results.json",
+      "bytes": 7291,
+      "sha256": "35a7e78cbccfb8645761db3b9191cbc11dcaf2201f82bc4eaa59a902fe6d73a4"
+    },
+    {
+      "file": "v14_reference.py",
+      "bytes": 39930,
+      "sha256": "6665e1074bc93636e4a2bebecdd1c51af357753153dda28ccfa32993ce5563ef"
+    },
+    {
+      "file": "v14_reference_results.json",
+      "bytes": 9051,
+      "sha256": "eeb71c6bed38cb2d9925d38233b366770b62b7b0b166e3cebbf9c58a0c2dd089"
+    },
+    {
+      "file": "v15_closure_matrix.json",
+      "bytes": 53854,
+      "sha256": "32b7d3e0a9a2b709d974968da68923fa40eb53ed72e6431a70d809585b3beeb8"
+    },
+    {
+      "file": "v15_domain_profiles.py",
+      "bytes": 8192,
+      "sha256": "6ffbed956cdc12c33e4c8a08cadd490b923df09f03d682163264cde3cca9a9b0"
+    },
+    {
+      "file": "v15_domain_results.json",
+      "bytes": 3023,
+      "sha256": "bfd2e24cca5d3e4f861e7ffa05a444813545063ff8123779f61c7a3fbb157651"
+    },
+    {
+      "file": "v15_events_coupling.py",
+      "bytes": 28034,
+      "sha256": "0c7847dd6eb286d5e6064aaae95174d2d74f8d8c3cab7e887ec897bba5ac9154"
+    },
+    {
+      "file": "v15_events_coupling_results.json",
+      "bytes": 7841,
+      "sha256": "25ffba5df25a0ba7f3492f0e85ae3ff29f85bf8c5895627fe11184e7e05a21dd"
+    },
+    {
+      "file": "v15_geometry.py",
+      "bytes": 32781,
+      "sha256": "c41a1788ebb9e5e7921923be69edfe9098f07b76c621283384af82929b9938a4"
+    },
+    {
+      "file": "v15_geometry_results.json",
+      "bytes": 14400,
+      "sha256": "0611102048a26870162dc537cd6489e2d57b035c21077bb753022fdfbb3d4b4d"
+    },
+    {
+      "file": "v15_physical.py",
+      "bytes": 25419,
+      "sha256": "edf809b9d9a6718d09469990550911f90f7e5e554a57a5c17daa598ce0048d0f"
+    },
+    {
+      "file": "v15_physical_results.json",
+      "bytes": 13207,
+      "sha256": "22f6e57f2d7cd03a7d10c77e5114e57c60282d6435787663e716ddd4143d54b0"
+    },
+    {
+      "file": "v15_source_scope_audit.json",
+      "bytes": 32328,
+      "sha256": "3579e0bca675966575c7e0394347605865dec5fb886820cbb3d94655a36775a2"
+    },
+    {
+      "file": "validate_xdtau_v13.py",
+      "bytes": 9873,
+      "sha256": "847d4265f324d8ce9ed38a69d1134acff7a093debeb561e914c748ff058b9c78"
+    },
+    {
+      "file": "validation_results_v13.json",
+      "bytes": 4608,
+      "sha256": "422cf5bc56d25c8715e977180ec62dd9ede7066e5203299697417cb7313ec3dc"
+    }
+  ]
+}

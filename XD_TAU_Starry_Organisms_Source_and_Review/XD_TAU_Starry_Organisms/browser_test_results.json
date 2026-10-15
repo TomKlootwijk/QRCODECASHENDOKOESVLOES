@@ -1,0 +1,72 @@
+{
+  "browser": "144.0.7559.96",
+  "platform": "Linux/headless Chromium",
+  "launch": "HTML loaded with Playwright set_content; file:// navigation was blocked by test environment policy",
+  "allPassed": true,
+  "testGroups": 15,
+  "checks": [
+    {
+      "name": "Boot, pause and deterministic scrub",
+      "passed": true
+    },
+    {
+      "name": "Appearance controls do not mutate simulation",
+      "passed": true
+    },
+    {
+      "name": "UI feed books external amount",
+      "passed": true
+    },
+    {
+      "name": "UI mutation preserves IDs and toggles 32 bits",
+      "passed": true
+    },
+    {
+      "name": "Local PNG import changes genesis and matches raw digest",
+      "passed": true
+    },
+    {
+      "name": "Photo RGB8 raster is retained",
+      "passed": true
+    },
+    {
+      "name": "Save-state UI exports current digest",
+      "passed": true
+    },
+    {
+      "name": "Germinate creates a distinct source-bound seed",
+      "passed": true
+    },
+    {
+      "name": "Load-state UI reproduces saved state",
+      "passed": true
+    },
+    {
+      "name": "Canvas PNG export produces valid PNG",
+      "passed": true
+    },
+    {
+      "name": "Tampered import leaves existing valid state unchanged",
+      "passed": true
+    },
+    {
+      "name": "All three display modes run without page errors",
+      "passed": true
+    },
+    {
+      "name": "Mobile layout has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "No HTTP or external resource requests from the app",
+      "passed": true,
+      "requests": []
+    },
+    {
+      "name": "No uncaught JavaScript page errors",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "scope": "Synthetic PNG fixture, not a user photograph. UI smoke tests and layout inspection; not Windows/macOS/native/Unity or HDR/volume validation."
+}

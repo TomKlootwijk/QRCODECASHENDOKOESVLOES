@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>XD-TAU / Starry Organisms — Tom Klootwijk</title>
+<style>
+:root{color-scheme:dark;--bg:#070b15;--panel:#0c1220;--border:#233044;--text:#e2e8f2;--muted:#92a1bb;--blue:#7fabf2;--gold:#e9c58c;--cyan:#8dc8cd}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}button{cursor:pointer;color:var(--text);background:#162236;border:1px solid #30405a;border-radius:7px;padding:9px 12px;transition:background .15s}button:hover{background:#23344e}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}button.primary{background:#b7cfee;color:#101928;border-color:#b7cfee;font-weight:650}button.primary:hover{background:#d7e6fb}button.ghost{background:transparent}button.active{background:#263c5d;border-color:#6e91be;color:#ebf4ff}
+header{min-height:77px;padding:18px 28px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-size:18px;letter-spacing:.15em;font-weight:650}.brand span{font-size:11px;letter-spacing:.16em;margin-left:12px;color:var(--muted);font-weight:400}.status{font-size:10px;letter-spacing:.15em;color:#a8bbc7}.status:before{content:"";display:inline-block;border-radius:50%;background:#8ac9b7;width:6px;height:6px;margin-right:9px}
+.layout{display:grid;grid-template-columns:320px minmax(0,1fr);min-height:calc(100vh - 77px)}aside{background:var(--panel);border-right:1px solid var(--border);padding:26px 23px}h1{font-size:31px;letter-spacing:-.045em;line-height:1.1;font-weight:500;margin:9px 0 12px}h1 em{font-family:Georgia,serif;color:var(--gold);font-weight:400;font-style:italic}.kicker{font-size:9px;letter-spacing:.23em;text-transform:uppercase;color:var(--cyan)}p{margin:0 0 15px;color:var(--muted);font-size:12px;line-height:1.6}section.control{border-top:1px solid var(--border);padding-top:18px;margin-top:20px}.label{display:flex;justify-content:space-between;font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin-bottom:10px}.row{display:flex;gap:7px;margin-top:8px}.row>*{flex:1;min-width:0}input[type=text]{width:100%;border:1px solid #30405a;background:#090f1d;color:#dbe7fa;border-radius:7px;padding:10px 11px;font-size:12px}input[type=range]{accent-color:#a7c3e8;min-width:0;cursor:pointer;width:100%;height:20px}select{background:#121c2d;border:1px solid #30405a;border-radius:6px;padding:5px;color:#d7e2f5;font-size:12px}button.small{padding:7px 9px;font-size:11px}.hash{font:9px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;color:#8299b8;overflow-wrap:anywhere;user-select:all;margin-top:9px}.source{display:flex;align-items:center;gap:11px;margin:12px 0}.source canvas{width:72px;height:48px;border:1px solid #32405a;border-radius:4px}.source div{font-size:10px;color:var(--muted);line-height:1.6}.fine{font-size:10px;color:#8291aa;line-height:1.6}.swatch{display:inline-block;width:18px;height:4px;border-radius:4px;margin-left:5px;background:#87b6eb}.swatch.gold{background:#e9c58c}
+main{min-width:0;display:flex;flex-direction:column}.toolbar{padding:19px 25px 15px;display:flex;justify-content:space-between;align-items:center;gap:12px}.viewModes{display:flex;gap:5px}.toolbar .micro{font:9px ui-monospace,monospace;color:#8ca3c2;letter-spacing:.12em}.stage{position:relative;min-height:530px;flex:1;background:#060a15;overflow:hidden}#scene{width:100%;height:100%;position:absolute;inset:0;touch-action:none;cursor:grab}.stage .caption{position:absolute;top:19px;left:25px;pointer-events:none;color:#9fb6d5;font-size:9px;letter-spacing:.17em}.stage .number{position:absolute;right:25px;top:19px;font:10px ui-monospace,monospace;color:#8ca3c2}.stage .artist{position:absolute;bottom:25px;right:25px;text-align:right;font-size:9px;color:#7990b3;letter-spacing:.13em;line-height:1.8;pointer-events:none}.stage .artist strong{font-weight:500;color:#a9b8ce}.footer{padding:18px 25px 22px;border-top:1px solid var(--border);background:#0a101c}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:15px}.metric small{font-size:8px;letter-spacing:.15em;color:var(--muted)}.metric strong{display:block;font:21px/1.5 ui-monospace,monospace;font-weight:400;color:#d2e1f5}.metric span{font-size:10px;color:#8c9cb7}.ledger{display:flex;flex-wrap:wrap;gap:9px 25px;padding:12px 0;border-top:1px solid #202a3c;color:#86a5b8;font:10px ui-monospace,monospace}.notice{min-height:34px;margin-top:9px;font-size:11px;line-height:1.6;color:#a4b9d1}.notice.error{color:#ffb4a0}.timeline{display:flex;align-items:center;gap:14px;color:#91a5c0;font-size:9px;letter-spacing:.1em}.timeline span{flex-shrink:0}.details{margin-top:10px;color:#91a5c0;font-size:10px}.details summary{cursor:pointer;margin-bottom:8px}a{color:#aacdf4}footer.credits{padding:13px 25px;color:#7688a3;font-size:9px;border-top:1px solid #182131;letter-spacing:.03em}
+@media(min-width:1500px){.layout{grid-template-columns:350px minmax(0,1fr)}aside{padding:28px}.stage{min-height:650px}}
+@media(max-width:950px){.brand span{display:none}.layout{grid-template-columns:275px minmax(0,1fr)}aside{padding:22px 18px}.toolbar{padding:16px}.toolbar .micro{display:none}.stage{min-height:480px}.metrics{grid-template-columns:repeat(2,1fr);gap:10px}h1{font-size:28px}.metric strong{font-size:19px}}
+@media(max-width:680px){header{padding:14px 18px;min-height:64px}.brand{font-size:15px}.status{font-size:8px}.layout{display:flex;flex-direction:column}aside{border-right:0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:21px 18px}aside .intro{grid-column:1/-1}aside .control{margin:0;padding-top:12px}aside .control:last-child{grid-column:1/-1}.stage{height:490px;min-height:490px;flex:auto}.toolbar{padding:13px 16px}.footer{padding:16px 18px}.metrics{grid-template-columns:repeat(2,1fr)}h1 br{display:none}h1{font-size:30px}.intro p{margin-bottom:0}.kicker{font-size:8px}}
+</style></head><body>
+<header><div class="brand">XD-TAU <span>STARRY ORGANISMS / RESEARCH PREVIEW</span></div><div class="status">LOCAL · OFFLINE · NO WALLET</div></header>
+<div class="layout"><aside>
+<div class="intro"><div class="kicker">A proposed living-media profile</div><h1>Seed a world.<br> <em>Watch it become.</em></h1><p>Photo-driven membrane reactors, painted as luminous currents. A finite application of Tom Klootwijk’s XD-TAU v1.5.</p></div>
+<section class="control"><div class="label"><span>01 / Genesis</span><span>SHA-256</span></div><label class="fine" for="seedPhrase">Public art seed — never a wallet seed</label><input id="seedPhrase" type="text" value="starry starry night" maxlength="1000"><div class="row"><button id="germinate" class="primary small">Germinate</button><button id="photo" class="small">Load photo</button></div><div class="source"><canvas id="sourcePreview" width="96" height="64" aria-label="Input thumbnail"></canvas><div id="sourceLabel"></div></div><button id="builtin" class="small ghost">Use synthetic source</button><div id="seedHash" class="hash"></div></section>
+<section class="control"><div class="label"><span>02 / Living state</span><span id="lineage"></span></div><div class="row"><button id="play" class="small">Pause</button><button id="step" class="small">+1 tick</button><button id="reset" class="small ghost">Reset</button></div><div class="row"><button id="feed" class="small">Feed +12</button><button id="mutate" class="small">Toggle allele</button></div><div class="row" style="align-items:center"><label for="speed" class="fine">Ticks per display frame</label><select id="speed"><option value="1">1</option><option value="3" selected>3</option><option value="8">8</option></select></div><p class="fine" style="margin:10px 0 0">Reactions → deposited shell → conductance → nutrient supply. Each source transfer is accounted for.</p></section>
+<section class="control"><div class="label"><span>03 / Painterly observation</span><span><i class="swatch"></i><i class="swatch gold"></i></span></div><label class="fine" for="style">Source color ↔ blue-and-gold brush palette</label><input id="style" type="range" min="0" max="100" value="77"><label class="fine" for="glow">Neon glow — display only, not physical radiation</label><input id="glow" type="range" min="0" max="100" value="75"><label class="fine" for="specimen">Inspect one membrane / binary cell</label><input id="specimen" type="range" min="0" max="31" value="11"><div id="specimenInfo" class="fine"></div></section>
+<section class="control"><div class="label"><span>04 / Checkpoint</span><span>FINITE STATE</span></div><div class="row"><button id="save" class="small">Save state</button><button id="restore" class="small">Load state</button></div><div class="row"><button id="saveImage" class="small ghost">Save painted PNG</button></div><details class="details"><summary>Checkpoint SHA-256 / scope</summary><div id="stateHash" class="hash"></div><p class="fine" style="margin-top:8px">The digest is not a blockchain, signature, ownership proof, or private key. Browser image decoding may vary; snapshots retain the exact normalized pixels. Replay is checked in the same runtime.</p></details></section>
+</aside><main><div class="toolbar"><div class="viewModes"><button class="small active" data-mode="orbit">3D portrait</button><button class="small" data-mode="photo">2D chart</button><button class="small" data-mode="membrane">Membrane</button></div><span class="micro">DRAG TO ORBIT · FIXED Δt = 0.04</span></div>
+<div class="stage"><canvas id="scene" aria-label="Animated painterly rendering of membrane reactor state"></canvas><div class="caption" id="viewLabel">3D ARTISTIC FIELD PORTRAIT</div><div class="number">n / <span id="tick">00000</span></div><div class="artist">GEOMETRY · INFORMATION · DYNAMICS<br><strong>PARADIGM / TOM KLOOTWIJK</strong></div></div>
+<div class="footer"><div class="metrics"><div class="metric"><small>MODEL TIME</small><strong id="time">0.00</strong><span>fixed simulation increments</span></div><div class="metric"><small>LOG TIME T</small><strong id="logtime">0.000</strong><span>ln(1 + t / t*)</span></div><div class="metric"><small>PRODUCED SHELL</small><strong id="shell">0.000</strong><span>deposited amount / 32 cells</span></div><div class="metric"><small>THERMAL RESERVOIRS</small><strong id="heat">0.000</strong><span>normalized energy units</span></div></div>
+<div class="timeline"><span>REPLAY n = 0</span><input id="timeline" aria-label="Replay timeline" type="range" min="0" max="2400" value="0"><span>2400</span></div><div class="ledger"><span>AMOUNT RESIDUAL <b id="amountError">0</b></span><span>ENERGY RESIDUAL <b id="energyError">0</b></span><span>TAGGED EVENTS <b id="events">0</b></span></div><div id="notice" class="notice" role="status"></div></div>
+<footer class="credits">Application profile 0.1.0 · AI-assisted implementation · Canvas glow preview, not Unity/HDR output · 2D image import only; native volumetric and 4D-data adapters are not implemented.</footer>
+</main></div>
+<input id="photoFile" type="file" accept="image/*" hidden><input id="checkpointFile" type="file" accept=".json,application/json" hidden>
+<script>/* XD-TAU Starry Organisms — proposed finite application profile 0.1.0.
+ * Paradigm: Tom Klootwijk, XD-TAU v1.5. Application implementation: AI-assisted.
+ * Source maps: PDF pp. 3, 8, 26, 31–36, 49, 52. See PROFILE.md for scope.
+ * No network, wallets, mining, eval, native plugins, or external dependencies.
+ * This is NOT a full implementation or certification of the architecture.
+ */
+'use strict';
+const XDTau = (() => {
+  const TAU = 2 * Math.PI;
+  const SPEC = '8dfae654435c035beefc3f9770cf6f51b55c0cef968071900142e4cf9b1cf0fd';
+  const PROFILE = Object.freeze({
+    name: 'xdtau-starry-membrane', version: '0.1.0', architecture: 'XD-TAU v1.5',
+    architectureSha256: SPEC, cells: 32, hierarchyDepth: 5,
+    dt: 0.04, tStar: 1, coreVolume: 1, reservoirVolume: 6, molarVolume: 0.8,
+    speciesEnergy: [1, 0, 0, 0], shellSpeciesEnergy: 0,
+    coordinateFrame: 'y-polar sphere, longitude atan2(z,x), upper-child split ownership',
+    modelUnits: 'declared normalized length, amount, energy and time units; no material calibration',
+    stages: ['tagged-events', 'freeze-conductance-and-rates', 'reservoir-exchange',
+      'reaction-1', 'reaction-2', 'reaction-3', 'deposition', 'geometry-output', 'observation'],
+    numericalScheme: 'binary64, exponential pair/subflows, ordered first-order Lie splitting',
+    canonicalEncoding: 'ASCII-key sorted JSON; ECMAScript finite-number serialization; UTF-8',
+    randomness: 'SHA-256 domain-separated counter samples; first 32 digest bits / 2^32',
+    display: 'nonphysical painterly chart, independent of conservation ledgers'
+  });
+  const enc = new TextEncoder();
+  const K = Uint32Array.from([
+    0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+    0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+    0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+    0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+    0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+    0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+    0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+    0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2
+  ]);
+  function sha256(input) {
+    const bytes = typeof input === 'string' ? enc.encode(input) : new Uint8Array(input);
+    const n = bytes.length, len = Math.ceil((n + 9) / 64) * 64;
+    const data = new Uint8Array(len); data.set(bytes); data[n] = 128;
+    const view = new DataView(data.buffer);
+    view.setUint32(len - 8, Math.floor(n / 0x20000000));
+    view.setUint32(len - 4, (n * 8) >>> 0);
+    const H = Uint32Array.from([0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,
+      0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19]);
+    const w = new Uint32Array(64), r = (a,b) => (a >>> b) | (a << (32-b));
+    for (let p = 0; p < len; p += 64) {
+      for (let i=0;i<16;i++) w[i] = view.getUint32(p+4*i);
+      for (let i=16;i<64;i++) {
+        const a=w[i-15], b=w[i-2];
+        w[i]=(w[i-16]+(r(a,7)^r(a,18)^(a>>>3))+w[i-7]+(r(b,17)^r(b,19)^(b>>>10)))>>>0;
+      }
+      let [a,b,c,d,e,f,g,h]=H;
+      for (let i=0;i<64;i++) {
+        const t1=(h+(r(e,6)^r(e,11)^r(e,25))+((e&f)^(~e&g))+K[i]+w[i])>>>0;
+        const t2=((r(a,2)^r(a,13)^r(a,22))+((a&b)^(a&c)^(b&c)))>>>0;
+        h=g;g=f;f=e;e=(d+t1)>>>0;d=c;c=b;b=a;a=(t1+t2)>>>0;
+      }
+      [a,b,c,d,e,f,g,h].forEach((x,i)=>H[i]=(H[i]+x)>>>0);
+    }
+    return Array.from(H,x=>x.toString(16).padStart(8,'0')).join('');
+  }
+  function canonical(x) {
+    if (x===null || typeof x==='boolean' || typeof x==='string') return JSON.stringify(x);
+    if (typeof x==='number') {
+      if (!Number.isFinite(x)) throw new Error('Nonfinite value outside the encoding domain.');
+      return JSON.stringify(x);
+    }
+    if (Array.isArray(x)) return '['+x.map(canonical).join(',')+']';
+    if (typeof x==='object' && Object.getPrototypeOf(x)===Object.prototype)
+      return '{'+Object.keys(x).sort().map(k=>JSON.stringify(k)+':'+canonical(x[k])).join(',')+'}';
+    throw new Error('Unsupported canonical value.');
+  }
+  const hash = (tag,...data) => sha256(canonical([tag,...data]));
+  const unit = (seed,label,i) => parseInt(hash('xdtau-counter/v1',seed,label,i).slice(0,8),16)/4294967296;
+  const copy = x => JSON.parse(JSON.stringify(x));
+  function cell(key, depth=PROFILE.hierarchyDepth) {
+    let u0=-1,u1=1,p0=0,p1=TAU;
+    for(let level=0;level<depth;level++) {
+      const bit=(key >>> (depth-level-1))&1;
+      if(level%2===0) {const m=(u0+u1)/2;if(bit)u0=m;else u1=m;}
+      else {const m=(p0+p1)/2;if(bit)p0=m;else p1=m;}
+    }
+    const u=(u0+u1)/2, psi=(p0+p1)/2, r=Math.sqrt(1-u*u);
+    return {word:key.toString(2).padStart(depth,'0'),depth,key,heapAddress:2**depth-1+key,
+      uInterval:[u0,u1],longitudeInterval:[p0,p1],solidAngle:(u1-u0)*(p1-p0),
+      representative:[r*Math.cos(psi),u,r*Math.sin(psi)]};
+  }
+  function locate(x,y,z,depth=PROFILE.hierarchyDepth) {
+    const norm=Math.hypot(x,y,z),u=norm===0?1:y/norm;
+    const psi=(norm===0 || (x===0&&z===0))?0:((Math.atan2(z,x)%TAU)+TAU)%TAU;
+    let u0=-1,u1=1,p0=0,p1=TAU,key=0;
+    for(let level=0;level<depth;level++) {
+      let bit;
+      if(level%2===0){const m=(u0+u1)/2;bit=u>=m?1:0;if(bit)u0=m;else u1=m;}
+      else{const m=(p0+p1)/2;bit=psi>=m?1:0;if(bit)p0=m;else p1=m;}
+      key=2*key+bit;
+    }
+    return key;
+  }
+  function makeSource(width,height,rgb,rawDigest=null,label='Local image') {
+    if(!Number.isInteger(width)||!Number.isInteger(height)||width<1||height<1||width*height>65536)
+      throw new Error('Expected a bounded positive raster.');
+    if(rgb.length!==width*height*3 || rgb.some(x=>!Number.isInteger(x)||x<0||x>255))
+      throw new Error('Expected RGB8 pixels.');
+    const s={adapter:'rgb8-art-raster/v1',width,height,rgb:Array.from(rgb),rawSha256:rawDigest,
+      label,interpretation:'sRGB-like encoded color samples; not a measured depth or physical energy field'};
+    s.pixelSha256=hash('xdtau-rgb8/v1',width,height,s.rgb);
+    return s;
+  }
+  function sample(source,u,v) {
+    const ix=Math.max(0,Math.min(source.width-1,Math.floor(u*source.width)));
+    const iy=Math.max(0,Math.min(source.height-1,Math.floor(v*source.height)));
+    const i=(iy*source.width+ix)*3;
+    return source.rgb.slice(i,i+3);
+  }
+  // Display/input quantization is separate from evolution; no state clipping occurs in _tick.
+  function builtinSource() {
+    const w=48,h=32,rgb=[];
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++) {
+      const u=x/w,v=y/h;
+      const wave=0.5+0.5*Math.sin(16*u+5*Math.sin(8*v)+9*v);
+      let star=0;
+      for(const [sx,sy,ss] of [[.19,.22,.020],[.73,.3,.036],[.53,.62,.018],[.88,.76,.018],[.28,.79,.025]])
+        star+=Math.exp(-((u-sx)**2+(v-sy)**2)/ss);
+      rgb.push(Math.round(Math.min(255,16+25*wave+180*star)),
+        Math.round(Math.min(255,25+64*wave+138*star)),Math.round(Math.min(255,68+104*wave+57*star)));
+    }
+    return makeSource(w,h,rgb,null,'Synthetic night-field — no supplied photograph');
+  }
+  const luminosity = rgb => (0.2126*rgb[0]+0.7152*rgb[1]+0.0722*rgb[2])/255;
+  function outerRadius(q) {return Math.cbrt(q.Ri**3+3*PROFILE.molarVolume*q.Ns/(4*Math.PI));}
+  function total(s) {
+    let amount=0,energy=0,shell=0,heat=0,min=Infinity;
+    for(const q of s.F) {
+      amount+=q.V*(q.f+q.a+q.b+q.m)+q.Ns+q.Vb*q.fb;
+      energy+=q.V*q.f+q.Vb*q.fb+q.heat;
+      shell+=q.Ns;heat+=q.heat;
+      min=Math.min(min,q.f,q.a,q.b,q.m,q.fb,q.Ns,q.heat);
+    }
+    return {amount,energy,shell,heat,min,
+      amountResidual:s.initial?amount-s.initial.amount-s.external.amount:0,
+      energyResidual:s.initial?energy-s.initial.energy-s.external.energy:0};
+  }
+  function geometry(s) {
+    // These local concentric shells have exact region semantics.
+    // The painterly overview is an explicitly nonphysical chart of these regions.
+    s.P=s.F.map((q,i)=>({kind:'Difference',id:s.E[i].id,frame:'reactor-local',
+      children:[{kind:'Sphere',radius:outerRadius(q),center:[0,0,0]},
+        {kind:'Sphere',radius:q.Ri,center:[0,0,0]}]}));
+  }
+  function initial(seedPhrase='starry starry night',source=builtinSource()) {
+    if(typeof seedPhrase!=='string'||seedPhrase.length>1000)throw new Error('Seed must be a public phrase of at most 1000 characters.');
+    const seed=hash('xdtau-genesis/v1',PROFILE,source.pixelSha256,seedPhrase);
+    const s={schema:'xdtau-starry-state/0.1.0',profile:copy(PROFILE),seed,seedPhrase,source:copy(source),
+      n:0,t:0,T:0,E:[],H:[],P:[],xi:[],b:[],F:[],O:[],applied:[],
+      C:[{from:'photo-encoded-luminance',to:'initial-precursor-and-reservoir',type:'artistic-input-coefficient'},
+        {from:'shell-inventory',to:'shell-radius',type:'material-volume',source:'D.1'},
+        {from:'shell-radius',to:'precursor-conductance',type:'Fick-shell-model',source:'D.1'},
+        {from:'reaction-precursor-loss',to:'heat',type:'chemical-energy-ledger',source:'C.13'},
+        {from:'state',to:'brushes/glow',type:'display-only-no-physical-feedback'}],
+      external:{amount:0,energy:0},initial:null};
+    for(let i=0;i<PROFILE.cells;i++) {
+      const c=cell(i),uv=[(c.longitudeInterval[0]+c.longitudeInterval[1])/(2*TAU),
+        0.5-(c.uInterval[0]+c.uInterval[1])/4];
+      const rgb=sample(source,...uv),lum=luminosity(rgb);
+      s.E.push({id:hash('xdtau-entity/v1',seed,i),orgParent:seed,cellWord:c.word,
+        chartPosition:c.representative,payload:{uv,rgb,lum}});
+      s.H.push(c);s.b.push(0);
+      s.xi.push({k1:.20+.18*unit(seed,'k1',i),k2:.18+.15*unit(seed,'k2',i),
+        k3:.7+.8*unit(seed,'k3',i),kd:.22+.28*unit(seed,'kd',i),
+        Ds:.0015+.003*unit(seed,'diffusion',i),partition:1,
+        flowPhase:TAU*unit(seed,'flow-phase',i)});
+      s.F.push({Ri:Math.cbrt(3/(4*Math.PI)),V:1,Vb:6,
+        f:.6+.8*lum,a:.16+.1*unit(seed,'catalyst-a',i),b:.12+.1*unit(seed,'catalyst-b',i),
+        m:.03,fb:1.4+1.2*lum,Ns:.16,heat:1,activity:0});
+    }
+    geometry(s);const t=total(s);s.initial={amount:t.amount,energy:t.energy};return s;
+  }
+  function tagKey(e){return canonical([e.replica,e.sequence]);}
+  function eventCompare(a,b){return a.logical-b.logical || (a.replica<b.replica?-1:a.replica>b.replica?1:0)
+    || a.sequence-b.sequence || (canonical(a)<canonical(b)?-1:canonical(a)>canonical(b)?1:0);}
+  function validateEvent(e) {
+    if(!e||!Number.isSafeInteger(e.sequence)||e.sequence<0||!Number.isSafeInteger(e.epoch)||e.epoch<0||
+      !Number.isSafeInteger(e.logical)||e.logical<0||typeof e.replica!=='string'||e.replica.length>100||
+      !['feed','xor'].includes(e.kind)||!(e.target==='all'||(Number.isInteger(e.target)&&e.target>=0&&e.target<PROFILE.cells)))
+      throw new Error('Event is outside the typed import domain.');
+    if(e.kind==='feed'&&(!Number.isFinite(e.amount)||e.amount<0||e.amount>10000))throw new Error('Invalid external feed amount.');
+  }
+  function mergeLogs(...logs) {
+    const byTag=new Map();
+    for(const e of logs.flat()) {
+      validateEvent(e);const key=tagKey(e),prev=byTag.get(key);
+      if(!prev||canonical(e)>canonical(prev))byTag.set(key,copy(e));
+    }
+    return [...byTag.values()].sort(eventCompare);
+  }
+  function _tick(s) {
+    const done=new Set(s.applied);
+    for(const e of s.O) if(e.epoch<=s.n&&!done.has(tagKey(e))) {
+      const ids=e.target==='all'?s.F.map((_,i)=>i):[e.target];
+      for(const i of ids) {
+        if(e.kind==='xor') s.b[i]^=1;
+        else {const amount=e.amount/ids.length;s.F[i].fb+=amount/s.F[i].Vb;
+          s.external.amount+=amount;s.external.energy+=amount;}
+      }
+      done.add(tagKey(e));
+    }
+    s.applied=[...done].sort();
+    const h=PROFILE.dt;
+    // G is frozen from the materialized start-of-tick geometry, per the causal profile.
+    const coeff=s.F.map((q,i)=>{const p=s.xi[i],Ro=outerRadius(q);return {
+      G:4*Math.PI*p.Ds*p.partition*q.Ri*Ro/(Ro-q.Ri),
+      k1:p.k1,k2:p.k2,k3:p.k3*(1+.5*s.b[i]),kd:p.kd};});
+    for(let i=0;i<s.F.length;i++) {
+      const q=s.F[i],g=coeff[i].G;
+      const mixed=-Math.expm1(-g*h*(1/q.V+1/q.Vb));
+      const f=q.f,fb=q.fb;
+      // Convex two-cell map: positivity without repairing a proposed next state.
+      const a=q.Vb/(q.V+q.Vb)*mixed,b=q.V/(q.V+q.Vb)*mixed;
+      q.f=(1-a)*f+a*fb;q.fb=b*f+(1-b)*fb;q.activity=0;
+    }
+    for(let stage=0;stage<3;stage++)for(let i=0;i<s.F.length;i++) {
+      const q=s.F[i],p=coeff[i];
+      const rate=stage===0?p.k1*q.b:stage===1?p.k2*q.a:p.k3*q.a*q.b;
+      const next=q.f*Math.exp(-rate*h),consumed=q.f-next;q.f=next;
+      if(stage===0)q.a+=consumed;else if(stage===1)q.b+=consumed;else q.m+=consumed;
+      q.heat+=q.V*consumed;q.activity+=consumed/h;
+    }
+    for(let i=0;i<s.F.length;i++) {
+      const q=s.F[i],next=q.m*Math.exp(-coeff[i].kd*h);
+      q.Ns+=q.V*(q.m-next);q.m=next;
+    }
+    geometry(s);s.n++;s.t=s.n*PROFILE.dt;s.T=Math.log1p(s.t/PROFILE.tStar);
+  }
+  function advance(state,ticks=1) {
+    if(!Number.isInteger(ticks)||ticks<0||ticks>100000)throw new Error('Invalid tick count.');
+    const s=copy(state);for(let i=0;i<ticks;i++)_tick(s);return s;
+  }
+  function replay(state,ticks=state.n,logs=state.O) {
+    const s=initial(state.seedPhrase,state.source);s.O=mergeLogs(logs);return advance(s,ticks);
+  }
+  function addEvent(state,event) {
+    const log=mergeLogs(state.O,[event]);
+    // Late logs trigger deliberate replay, not a claim that log convergence alone fixes trajectories.
+    if(event.epoch<state.n)return replay(state,state.n,log);
+    const s=copy(state);s.O=log;return s;
+  }
+  function snapshot(state) {return {format:'xdtau-starry-checkpoint/0.1.0',
+    stateHash:hash('xdtau-checkpoint/v1',state),state:copy(state)};}
+  function restore(packet) {
+    if(!packet||packet.format!=='xdtau-starry-checkpoint/0.1.0')throw new Error('Unsupported checkpoint format.');
+    const s=packet.state;
+    if(hash('xdtau-checkpoint/v1',s)!==packet.stateHash)throw new Error('Checkpoint digest mismatch.');
+    if(!s||s.schema!=='xdtau-starry-state/0.1.0'||canonical(s.profile)!==canonical(PROFILE))
+      throw new Error('This checkpoint requires another profile version.');
+    if(!Number.isInteger(s.n)||s.n<0||s.n>100000||s.source.width*s.source.height>65536||s.O.length>10000)
+      throw new Error('Checkpoint exceeds this demonstrator’s import limits.');
+    const source=makeSource(s.source.width,s.source.height,s.source.rgb,s.source.rawSha256,s.source.label);
+    if(source.pixelSha256!==s.source.pixelSha256)throw new Error('Canonical pixel digest mismatch.');
+    if(initial(s.seedPhrase,source).seed!==s.seed)throw new Error('Genesis digest mismatch.');
+    const expected=replay(s,s.n);
+    // Full replay validation is appropriate at an import boundary, not a dynamics rejection policy.
+    if(canonical(expected)!==canonical(s))throw new Error('State differs from replay in this runtime. Use the original runtime or genesis/logs.');
+    return copy(s);
+  }
+  return {PROFILE,SPEC,TAU,sha256,canonical,hash,unit,cell,locate,makeSource,sample,builtinSource,
+    luminosity,outerRadius,total,initial,advance,replay,mergeLogs,addEvent,snapshot,restore};
+})();
+if(typeof module!=='undefined'&&module.exports)module.exports=XDTau;
+</script><script>/* Standalone Canvas preview. This renderer is an artistic observation adapter.
+ * It does not feed brightness, camera transforms, or rasterization into physics.
+ */
+'use strict';
+(() => {
+  const X=XDTau,$=id=>document.getElementById(id),canvas=$('scene'),ctx=canvas.getContext('2d');
+  const paint=document.createElement('canvas'),pc=paint.getContext('2d');
+  let state=X.initial(),playing=true,mode='orbit',brushes=[],stars=[],dirty=true;
+  let width=900,height=700,pixelRatio=1,lastFrame=0,lastStats=0,sequence=0;
+  let busy=false,rotation=0,dragX=null;
+  const notices=[];
+  function notice(text,error=false) {
+    $('notice').textContent=text;$('notice').className=error?'notice error':'notice';
+    notices.push({text,error});
+  }
+  function prepare() {
+    brushes=[];stars=[];
+    for(let i=0;i<4500;i++) {
+      const a=X.unit(state.seed,'brush-u',i),b=X.unit(state.seed,'brush-phase',i),u=2*a-1,p=b*X.TAU;
+      const rr=Math.sqrt(1-u*u),idx=X.locate(rr*Math.cos(p),u,rr*Math.sin(p));
+      const rgb=X.sample(state.source,b,1-a),lum=X.luminosity(rgb);
+      const l1=X.luminosity(X.sample(state.source,b+.03,1-a));
+      const l2=X.luminosity(X.sample(state.source,b,1-a+.03));
+      brushes.push({u,p,idx,rgb,lum,edge:[l1-lum,l2-lum],size:X.unit(state.seed,'brush-size',i),
+        offset:X.unit(state.seed,'brush-offset',i),highlight:X.unit(state.seed,'brush-highlight',i)});
+    }
+    for(let i=0;i<150;i++)stars.push([X.unit(state.seed,'star-x',i),X.unit(state.seed,'star-y',i),X.unit(state.seed,'star-size',i)]);
+    $('seedHash').textContent=state.seed;
+    $('sourceLabel').textContent=state.source.label;
+    const preview=$('sourcePreview'),pctx=preview.getContext('2d');
+    const im=pctx.createImageData(state.source.width,state.source.height);
+    for(let i=0;i<state.source.rgb.length/3;i++) {
+      im.data[i*4]=state.source.rgb[i*3];im.data[i*4+1]=state.source.rgb[i*3+1];
+      im.data[i*4+2]=state.source.rgb[i*3+2];im.data[i*4+3]=255;
+    }
+    const tiny=document.createElement('canvas');tiny.width=state.source.width;tiny.height=state.source.height;
+    tiny.getContext('2d').putImageData(im,0,0);pctx.clearRect(0,0,preview.width,preview.height);
+    pctx.drawImage(tiny,0,0,preview.width,preview.height);
+    dirty=true;stats();
+  }
+  function resize() {
+    const r=canvas.getBoundingClientRect();width=r.width;height=r.height;
+    pixelRatio=Math.min(devicePixelRatio||1,1.5);
+    canvas.width=paint.width=Math.round(width*pixelRatio);
+    canvas.height=paint.height=Math.round(height*pixelRatio);
+    dirty=true;
+  }
+  function palette(b,q,idx) {
+    const style=+$('style').value/100;
+    const light=b.lum,warm=b.highlight>.975 || (light>.53 && b.highlight>.32);
+    const h=Math.log1p(q.heat)/6;
+    const blue=[34+light*52,81+light*99,150+light*78];
+    const gold=[250,154+light*85,67+light*98];
+    const col=warm?gold:blue;
+    return col.map((c,i)=>Math.round(Math.min(255,(1-style)*b.rgb[i]+style*c+(i===2?5:2)*h+state.b[idx]*5)));
+  }
+  function project(x,y,z,R) {
+    const angle=(mode==='membrane'?.22:.5)+rotation+(mode==='orbit'?state.n*.00065:0);
+    let xx=x*Math.cos(angle)+z*Math.sin(angle),zz=-x*Math.sin(angle)+z*Math.cos(angle);
+    const yy=y*.976-zz*.218;zz=y*.218+zz*.976;
+    const scale=4.6/(4.6-zz);
+    return [width*.50+xx*R*scale,height*.49-yy*R*scale,zz,scale];
+  }
+  function point(b,d,q,idx,R) {
+    const growth=X.outerRadius(q)/q.Ri-1,t=state.t,phase=state.xi[idx].flowPhase;
+    if(mode==='photo') {
+      const flow=.028*Math.sin(b.p*2+phase+t*.09);
+      const x=(b.p/X.TAU-.5)*2.65+flow+ d*(.02+b.edge[1]*.15);
+      const y=b.u*.85+ .018*Math.sin(b.p*3+t*.2)+d*(.01-b.edge[0]*.15);
+      return [width*.5+x*R,height*.50-y*R,1,1];
+    }
+    const p=b.p+.15*Math.sin(3*b.u+phase+t*.10)+d*(.030+b.size*.046);
+    const u=b.u+.025*Math.sin(4*b.p+phase+t*.13)*(1-b.u*b.u)+d*.018*Math.sin(b.p*3+phase)*(1-b.u*b.u);
+    // The art chart is intentionally not an exact CSG distance or a physical deformation.
+    const r=mode==='membrane'?1:(1+.15*growth+.028*Math.sin(7*b.p+phase+t*.2));
+    const latitude=Math.max(-.9999,Math.min(.9999,u)),rr=Math.sqrt(1-latitude*latitude);
+    return project(r*rr*Math.cos(p),r*latitude,r*rr*Math.sin(p),R);
+  }
+  function draw() {
+    ctx.setTransform(pixelRatio,0,0,pixelRatio,0,0);pc.setTransform(pixelRatio,0,0,pixelRatio,0,0);
+    ctx.clearRect(0,0,width,height);pc.clearRect(0,0,width,height);
+    const R=Math.min(width*(mode==='photo'?.29:.33),height*.34);
+    const g=ctx.createRadialGradient(width*.5,height*.49,R*.03,width*.5,height*.49,R*1.8);
+    g.addColorStop(0,'#11254c');g.addColorStop(.53,'#0a122b');g.addColorStop(1,'#060a15');
+    ctx.fillStyle=g;ctx.fillRect(0,0,width,height);
+    for(const [x,y,r] of stars) {
+      ctx.fillStyle=`rgba(164,193,245,${.12+r*.46})`;ctx.beginPath();ctx.arc(x*width,y*height,.4+r*.8,0,X.TAU);ctx.fill();
+    }
+    // Faint latitude guide: a display coordinate aid, not an extra physical boundary.
+    if(mode!=='photo') {
+      ctx.strokeStyle='rgba(113,155,224,.075)';ctx.lineWidth=1;
+      for(let j=0;j<3;j++){ctx.beginPath();ctx.ellipse(width*.5,height*.49,R*(1.14+.12*j),R*(.38+.035*j),-.28,0,X.TAU);ctx.stroke();}
+    }
+    let coords=brushes.map(b=>{
+      const idx=mode==='membrane'?+$('specimen').value:b.idx,q=state.F[idx];
+      const p=point(b,0,q,idx,R);return {b,idx,q,p};
+    });
+    coords.sort((a,b)=>a.p[2]-b.p[2]);
+    pc.lineCap='round';
+    for(const {b,idx,q,p} of coords) {
+      if(mode!=='photo'&&p[2]<-.12)continue;
+      const p1=point(b,1,q,idx,R),p2=point(b,2,q,idx,R),col=palette(b,q,idx);
+      const front=mode==='photo'?1:.26+.74*Math.max(0,p[2]);
+      const alpha=Math.min(.98,front*(.52+b.size*.38));
+      pc.strokeStyle=`rgba(${col.join(',')},${alpha})`;pc.lineWidth=(.7+b.size*1.8)*Math.min(1.5,R/240);
+      pc.beginPath();pc.moveTo(p[0],p[1]);pc.quadraticCurveTo(p1[0],p1[1],p2[0],p2[1]);pc.stroke();
+      if(b.highlight>.97) {
+        pc.strokeStyle=`rgba(239,234,192,${alpha*.85})`;pc.lineWidth=.55;
+        pc.beginPath();pc.moveTo(p[0]+.7,p[1]);pc.lineTo(p1[0]+.7,p1[1]);pc.stroke();
+      }
+    }
+    // Compact luminous nuclei are graphical observations of local stored heat.
+    if(mode!=='photo')for(let i=0;i<state.F.length;i++) {
+      if(i%5!==1&&mode!=='membrane')continue;
+      if(mode==='membrane'&&i!==+$('specimen').value)continue;
+      const q=state.F[i],pos=mode==='membrane'?[.31,.16,.94]:state.H[i].representative;
+      const growth=X.outerRadius(q)/q.Ri-1,p=project(...pos.map(x=>x*(mode==='membrane'?1:1+.15*growth)),R);
+      if(p[2]<0)continue;
+      const s=(5+Math.log1p(q.heat)*2.5)*p[3];
+      pc.strokeStyle='rgba(255,208,123,.72)';pc.lineWidth=1.6;
+      for(let arm=0;arm<3;arm++) {
+        pc.beginPath();
+        for(let j=0;j<34;j++) {
+          const a=j*.125+arm*2.1+state.t*.02,r=s*(.17+j*.037);
+          const xx=p[0]+Math.cos(a)*r,yy=p[1]+Math.sin(a)*r*.75;
+          if(j===0)pc.moveTo(xx,yy);else pc.lineTo(xx,yy);
+        }
+        pc.stroke();
+      }
+      pc.fillStyle='rgba(255,242,193,.9)';pc.beginPath();pc.arc(p[0],p[1],2.1*p[3],0,X.TAU);pc.fill();
+    }
+    const glow=+$('glow').value/100;
+    ctx.save();ctx.globalCompositeOperation='screen';
+    ctx.filter='blur(17px)';ctx.globalAlpha=glow*.8;ctx.drawImage(paint,0,0,width,height);
+    ctx.filter='blur(5px)';ctx.globalAlpha=glow*.6;ctx.drawImage(paint,0,0,width,height);
+    ctx.filter='none';ctx.globalAlpha=1;ctx.drawImage(paint,0,0,width,height);ctx.restore();
+    if(mode==='membrane') {
+      const q=state.F[+$('specimen').value],inner=q.Ri/X.outerRadius(q);
+      ctx.save();ctx.strokeStyle='rgba(118,209,222,.6)';ctx.setLineDash([3,6]);ctx.lineWidth=1;
+      ctx.beginPath();ctx.arc(width*.5,height*.49,R*inner,0,X.TAU);ctx.stroke();ctx.restore();
+      ctx.font='11px ui-monospace, monospace';ctx.fillStyle='#97cdd7';
+      ctx.fillText('DASHED: FIXED CORE / PAINTED: PRODUCED SHELL',24,height-28);
+    }
+    dirty=false;
+  }
+  function stats() {
+    const z=X.total(state);
+    $('tick').textContent=String(state.n).padStart(5,'0');$('time').textContent=state.t.toFixed(2);
+    $('logtime').textContent=state.T.toFixed(3);$('shell').textContent=z.shell.toFixed(3);
+    $('heat').textContent=z.heat.toFixed(3);$('amountError').textContent=z.amountResidual.toExponential(2);
+    $('energyError').textContent=z.energyResidual.toExponential(2);
+    $('events').textContent=state.O.length;$('timeline').value=Math.min(2400,state.n);
+    $('lineage').textContent=state.b.reduce((a,b)=>a+b,0)+'/32 active alleles';
+    $('stateHash').textContent=X.snapshot(state).stateHash;
+    const idx=+$('specimen').value,q=state.F[idx];
+    $('specimenInfo').textContent=`${state.H[idx].word}  •  Rᵢ ${q.Ri.toFixed(3)}  →  Rₒ ${X.outerRadius(q).toFixed(3)}`;
+  }
+  function download(name,text,type='application/json') {
+    const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');
+    a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  }
+  function setPlay(value) {playing=value;$('play').textContent=playing?'Pause':'Resume';}
+  $('play').onclick=()=>setPlay(!playing);
+  $('step').onclick=()=>{setPlay(false);state=X.advance(state,1);dirty=true;stats();};
+  $('reset').onclick=()=>{state=X.replay(state,0,[]);sequence=0;dirty=true;stats();notice('Same genome; original state; event history cleared.');};
+  $('germinate').onclick=()=>{state=X.initial($('seedPhrase').value,state.source);sequence=0;prepare();notice('New genesis from the public art seed and canonical pixels.');};
+  $('feed').onclick=()=>{
+    state=X.addEvent(state,{replica:'local',sequence:sequence++,epoch:state.n,logical:state.n,kind:'feed',target:'all',amount:12});
+    notice('Feed scheduled for the next tick. +12 amount and +12 chemical energy entered in the source ledger.');stats();
+  };
+  $('mutate').onclick=()=>{
+    state=X.addEvent(state,{replica:'local',sequence:sequence++,epoch:state.n,logical:state.n,kind:'xor',target:'all'});
+    notice('Tagged allele toggle scheduled. Stable entity IDs remain unchanged; production rates change next tick.');stats();
+  };
+  $('save').onclick=()=>{
+    const packet=X.snapshot(state);download(`xdtau-${state.seed.slice(0,10)}-n${state.n}.json`,JSON.stringify(packet,null,2));
+    notice('Saved source pixels, finite state, profile, events, and SHA-256 checkpoint. Original photo bytes are not embedded.');
+  };
+  $('saveImage').onclick=()=>{
+    const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download=`xdtau-paint-n${state.n}.png`;a.click();
+    notice('Saved a display-only PNG. Use the checkpoint to preserve the living state.');
+  };
+  $('restore').onclick=()=>$('checkpointFile').click();
+  $('checkpointFile').onchange=async e=>{
+    const f=e.target.files[0];if(!f)return;
+    try {
+      if(f.size>3000000)throw new Error('Checkpoint file exceeds the 3 MB preview limit.');
+      busy=true;setPlay(false);notice('Checking digest and replaying the recorded profile…');
+      state=X.restore(JSON.parse(await f.text()));
+      sequence=Math.max(-1,...state.O.filter(e=>e.replica==='local').map(e=>e.sequence))+1;
+      $('seedPhrase').value=state.seedPhrase;prepare();notice('Checkpoint verified against full replay in this browser.');
+    }catch(err){notice(err.message,true);}finally{busy=false;e.target.value='';}
+  };
+  $('photo').onclick=()=>$('photoFile').click();
+  $('photoFile').onchange=async e=>{
+    const f=e.target.files[0];if(!f)return;
+    try {
+      if(f.size>20000000)throw new Error('For this preview, choose a browser-decodable image smaller than 20 MB.');
+      busy=true;notice('Reading locally; hashing source bytes and retaining the normalized RGB pixels…');
+      const raw=new Uint8Array(await f.arrayBuffer()),rawHash=X.sha256(raw);
+      const image=await createImageBitmap(f),c=document.createElement('canvas');c.width=48;c.height=32;
+      const cc=c.getContext('2d',{willReadFrequently:true});cc.fillStyle='#000';cc.fillRect(0,0,48,32);
+      const scale=Math.min(48/image.width,32/image.height),dw=image.width*scale,dh=image.height*scale;
+      cc.drawImage(image,(48-dw)/2,(32-dh)/2,dw,dh);image.close();
+      const pixels=cc.getImageData(0,0,48,32).data,rgb=[];
+      for(let i=0;i<pixels.length;i+=4)rgb.push(pixels[i],pixels[i+1],pixels[i+2]);
+      const src=X.makeSource(48,32,rgb,rawHash,'Your local image — frozen 48 × 32 RGB8 letterbox');
+      state=X.initial($('seedPhrase').value,src);sequence=0;prepare();
+      notice('Your image now changes both the genome and initial precursor fields. Nothing was uploaded.');
+    }catch(err){notice('Image import: '+err.message,true);}finally{busy=false;e.target.value='';}
+  };
+  $('builtin').onclick=()=>{state=X.initial($('seedPhrase').value,X.builtinSource());sequence=0;prepare();notice('Synthetic input restored.');};
+  document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{
+    mode=b.dataset.mode;document.querySelectorAll('[data-mode]').forEach(x=>x.classList.toggle('active',x===b));
+    $('viewLabel').textContent=mode==='orbit'?'3D ARTISTIC FIELD PORTRAIT':mode==='photo'?'2D PHOTO-FIELD CHART':'LOCAL MEMBRANE OBSERVATION';
+    dirty=true;
+  });
+  for(const id of ['style','glow','specimen'])$(id).oninput=()=>{dirty=true;stats();};
+  $('timeline').oninput=()=>{
+    setPlay(false);state=X.replay(state,+$('timeline').value);dirty=true;stats();
+  };
+  canvas.onpointerdown=e=>{dragX=e.clientX;canvas.setPointerCapture(e.pointerId);};
+  canvas.onpointermove=e=>{if(dragX!==null){rotation+=(e.clientX-dragX)*.008;dragX=e.clientX;dirty=true;}};
+  canvas.onpointerup=()=>{dragX=null;};canvas.onpointercancel=()=>{dragX=null;};
+  new ResizeObserver(resize).observe(canvas);
+  function frame(now) {
+    if(now-lastFrame>40) {
+      if(playing&&!busy){state=X.advance(state,+$('speed').value);dirty=true;}
+      if(dirty)draw();
+      if(now-lastStats>400){stats();lastStats=now;}lastFrame=now;
+    }
+    requestAnimationFrame(frame);
+  }
+  // A small inspection surface for automated tests; never executes imported code.
+  window.StarryLab={getState:()=>state,getNotices:()=>notices,setPlaying:setPlay,
+    setTick:n=>{setPlay(false);state=X.replay(state,n);dirty=true;stats();},
+    checkpoint:()=>X.snapshot(state),renderNow:draw,core:X};
+  prepare();resize();notice('Built-in synthetic source. Load a photo to make a specimen from your own pixels.');
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

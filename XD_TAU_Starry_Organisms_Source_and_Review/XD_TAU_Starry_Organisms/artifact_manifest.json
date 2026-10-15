@@ -1,0 +1,134 @@
+{
+  "package": "XD-TAU Starry Organisms application profile 0.1.0",
+  "paradigm_attribution": "Tom Klootwijk",
+  "implementation": "AI-assisted",
+  "architecture_pdf_sha256": "8dfae654435c035beefc3f9770cf6f51b55c0cef968071900142e4cf9b1cf0fd",
+  "manifest_excludes_itself": true,
+  "files": [
+    {
+      "path": "ARCHITECTURE_AND_ROADMAP.md",
+      "bytes": 9255,
+      "sha256": "713b49f80c99886435d904634a19245784e47c631f2e4edaf8510a2b0eb0bf71"
+    },
+    {
+      "path": "PROFILE.md",
+      "bytes": 8708,
+      "sha256": "1884f174da365ac55f58694f8d3a453be3dec6ea2b6c4fb28737ec14106987cc"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6353,
+      "sha256": "61eca777c5c6ceea8fbe8c0a6ea235f8dc04ead08e825723b33539fac5da273a"
+    },
+    {
+      "path": "XD_TAU_Starry_Organisms.html",
+      "bytes": 41181,
+      "sha256": "1b7fde7a68a4756a590e3263c3f5d459dafd70f50d9ad96ca29efcee652d2d88"
+    },
+    {
+      "path": "architecture_rerun_report.json",
+      "bytes": 14557,
+      "sha256": "e1d222900206bed2febb7af9fd85bcb7ca7c7bfb1e221276cb607b0c499870b1"
+    },
+    {
+      "path": "architecture_verification/v14_adm_shell_results.json",
+      "bytes": 15737,
+      "sha256": "80d253f1972fc63475d59d51cb38b00db54604cf35e20a8d303c32fb4bc08117"
+    },
+    {
+      "path": "architecture_verification/v14_csg_results.json",
+      "bytes": 7084,
+      "sha256": "75f554b0a8da9ed74340bc73939a43b41f3de0328746b00f833e654b74904117"
+    },
+    {
+      "path": "architecture_verification/v14_reference_results.json",
+      "bytes": 8755,
+      "sha256": "3f9296309471ce75c120c96ddcb8535bef7e3444ae118fb531afc29ba54e343f"
+    },
+    {
+      "path": "architecture_verification/v15_domain_results.json",
+      "bytes": 2935,
+      "sha256": "5e7003cffddd749bd8cfb0296fc8a666f1b1d0550ad9cf90451cdab5a58120c8"
+    },
+    {
+      "path": "architecture_verification/v15_events_coupling_results.json",
+      "bytes": 7572,
+      "sha256": "090694bb0da29338c8e1365436a5d81a442c7ebca7897c15399b2dbb875c82ed"
+    },
+    {
+      "path": "architecture_verification/v15_geometry_results.json",
+      "bytes": 14073,
+      "sha256": "5410b976452a77aaf456640bb2fa983f598addac3921e07367bd1675a5699534"
+    },
+    {
+      "path": "architecture_verification/v15_physical_results.json",
+      "bytes": 12907,
+      "sha256": "6c4c10c4e0eff53291fa69bccfa122e4ad54f5ce2563250e2a7660e799a372a3"
+    },
+    {
+      "path": "architecture_verification/validation_results_v13.json",
+      "bytes": 4417,
+      "sha256": "6366fbf58094daf91677425df129e9678954b32b67a78e0846835e66b00b56d9"
+    },
+    {
+      "path": "browser_test_results.json",
+      "bytes": 1838,
+      "sha256": "aa41458c35d1d74606d4f1734eab879413696474884b126c7c26c169eae5df1e"
+    },
+    {
+      "path": "build_html.py",
+      "bytes": 732,
+      "sha256": "1d761be41f8e869185a99db0eea93b39c0733300a2a9e81b012cec3b205e3a7b"
+    },
+    {
+      "path": "demo_test_results.json",
+      "bytes": 4121,
+      "sha256": "70eecdc9f7c93a8cc8a10c4d13bb5bf33000c1f0322672978631bf3fbded8d82"
+    },
+    {
+      "path": "example_checkpoint_n1200.json",
+      "bytes": 130037,
+      "sha256": "e41b5dd249b781ec042fd5fd3df09ed38a97de97cc66e4a9c043ed8479d42b81"
+    },
+    {
+      "path": "organism_cli.js",
+      "bytes": 1850,
+      "sha256": "4ceb17863c8bb1c8eda393babf49743116beb36c00598dfe315d33b3b46a99f9"
+    },
+    {
+      "path": "organism_core.js",
+      "bytes": 15314,
+      "sha256": "5115c27db74f851bcb505e05cca4af388e5e9bfbd1f926119b022dbac71e6d10"
+    },
+    {
+      "path": "preview_desktop.png",
+      "bytes": 768243,
+      "sha256": "18c9d520a9a8e013cacac7a1e3820105627d1abc4006d6639ed0e720ec9aedf7"
+    },
+    {
+      "path": "references.json",
+      "bytes": 2405,
+      "sha256": "e78e62cb7d23056f5c14b4d0cc775c2f9667738f50565ffe990375101c6016bf"
+    },
+    {
+      "path": "source_map.json",
+      "bytes": 3372,
+      "sha256": "48e6c5102350b90d675399bb93256e7c6fee5e3117af9b545c09d984938e0e69"
+    },
+    {
+      "path": "template.html",
+      "bytes": 11455,
+      "sha256": "3208c7a527bbb41fb0240057ff76ee9e9f55140247f2f3749b01bbe513720c21"
+    },
+    {
+      "path": "test_core.js",
+      "bytes": 6219,
+      "sha256": "88c3954bcf78c5294e9ffdcaf1450f2c55d864a01780e50caf502896d2cb76b4"
+    },
+    {
+      "path": "ui.js",
+      "bytes": 14434,
+      "sha256": "994eaa9e27f61764edac5ae48d5b854ff65efaec53ec56a686252491fd77a978"
+    }
+  ]
+}

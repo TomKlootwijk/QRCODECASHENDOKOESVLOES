@@ -1,0 +1,385 @@
+{
+  "title": "XD-TAU v1.4 ADM/scalar and shell reactor verification",
+  "method": "Python Fraction exact sparse algebra; NumPy float64 RK4 only for labelled numerical examples",
+  "python_version": "3.13.5",
+  "numpy_version": "2.3.5",
+  "all_checks_passed": true,
+  "exact_flrw_identity_count": 18,
+  "flrw_exact_checks": [
+    {
+      "name": "ADM metric evolution",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "d_T h_ii = -2*N*K_ii",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "scalar matter curvature bracket",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "pi*[S_ii-h_ii*(S-rho)/2]=0",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "ADM curvature evolution",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "d_T K_ii=N*(K*K_ii-2*K_ik*K^k_i-8*pi*[S_ii-h_ii*(S-rho)/2])",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "Hamiltonian constraint",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "R3+K^2-K_ij*K^ij-16*pi*rho=0; R3=0",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "momentum constraint",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "D_j(K^ij-h^ij*K)-8*pi*j^i=0; spatial derivatives and j vanish",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "extrinsic curvature definition",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "K_ii=-(d_T h_ii)/(2*N), beta=0",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "trace curvature evolution",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "d_T K=N*(K_ij*K^ij+4*pi*(rho+S))",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "harmonic lapse",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "d_T N=-N^2*K",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "harmonic time flux",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "d_T(sqrt(det(h))/N)=d_T(1/tstar)=0",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "harmonic shift profile",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "d_T beta^i=N^2*Gamma3^i-N*D^i N=0; all spatial coefficients constant",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "scalar field evolution",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "(d_T phi-N*Pi)/A=0, A=sigma/sqrt(12*pi)",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "scalar normal momentum evolution",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "[d_T Pi-N*K*Pi]/A=0",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "scalar covariant wave equation",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "[d_tau^2 phi+3*H*d_tau phi]/A=0",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "matter energy conservation",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "pi*[d_tau rho+3*H*(rho+p)]=0",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "matter spatial momentum conservation",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "spatial homogeneity and j_i=0 imply spatial divergence equations",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "Einstein proper-time temporal component",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "R_tau,tau-8*pi*(d_tau phi)^2=0",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "Einstein spatial components",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "R_ii= a*a''+2*(a')^2 =8*pi*(partial_i phi)^2=0",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    },
+    {
+      "name": "scalar stress energy density",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "pi*rho=pi*(Pi^2/2)=1/(24*tau^2)",
+      "assumptions": "tau=tstar*exp(T)>0, tstar>0; spatially homogeneous periodic T^3, signature (-+++), c=G=1, V(phi)=0, K_ij=-1/2 L_n h_ij, sigma in {-1,1}"
+    }
+  ],
+  "general_harmonic_shift": {
+    "name": "general harmonic shift product-rule reduction",
+    "kind": "exact_rational_symbolic_identity",
+    "passed": true,
+    "residual": "0",
+    "identity": "partial_t(A*beta_i)+partial_j(B_ij-A*beta_i*beta_j) = A*(partial_t-beta^j*partial_j)beta_i+partial_j B_ij",
+    "assumptions": "A=sqrt(det(h))/N; B_ij=N*sqrt(det(h))*h^ij; Gamma^0=0 implies partial_t A=partial_j(A*beta^j)",
+    "metric_divergence_identity": "partial_j(sqrt(det(h))*h^ij)=-sqrt(det(h))*Gamma3^i",
+    "derived_shift_equation": "(partial_t-beta^j*partial_j)beta^i=N^2*Gamma3^i-N*D^i N",
+    "scope": "Coordinate components in a Cartesian periodic atlas; use connection differences for a global harmonic-map gauge on a general manifold."
+  },
+  "shell_analytic_checks": {
+    "conservation": {
+      "name": "shell-core-reservoir monomer conservation",
+      "kind": "exact_rational_symbolic_identity",
+      "passed": true,
+      "residual": "0",
+      "identity": "d_t[V*(f+a+b+m)+Ns+Vb*f_b]=0",
+      "assumptions": "V,Vb,Ri,vbar,Ds,Kpart,Ns0>0; Ns>=Ns0; k1,k2,k3,kd>=0; f,a,b,m,f_b>=0"
+    },
+    "inward_face_signs": {
+      "kind": "exact_nonnegative_polynomial_coefficients",
+      "passed": true,
+      "domain": "V,Vb,Ri,vbar,Ds,Kpart,Ns0>0; Ns>=Ns0; k1,k2,k3,kd>=0; f,a,b,m,f_b>=0",
+      "faces": [
+        {
+          "face": "f=0",
+          "nonnegative_numerator": "1*G*f_b",
+          "positive_denominator": "V>0",
+          "passed": true
+        },
+        {
+          "face": "a=0",
+          "nonnegative_numerator": "1*b*f*k1",
+          "positive_denominator": "1",
+          "passed": true
+        },
+        {
+          "face": "b=0",
+          "nonnegative_numerator": "1*a*f*k2",
+          "positive_denominator": "1",
+          "passed": true
+        },
+        {
+          "face": "m=0",
+          "nonnegative_numerator": "1*a*b*f*k3",
+          "positive_denominator": "1",
+          "passed": true
+        },
+        {
+          "face": "Ns=Ns0",
+          "nonnegative_numerator": "1*V*kd*m",
+          "positive_denominator": "1",
+          "passed": true
+        },
+        {
+          "face": "f_b=0",
+          "nonnegative_numerator": "1*G*f",
+          "positive_denominator": "Vb>0",
+          "passed": true
+        }
+      ]
+    },
+    "conductance_domain": {
+      "kind": "analytic_definition_and_derivation",
+      "passed": true,
+      "Ro": "(Ri^3+3*vbar*Ns/(4*pi))^(1/3)",
+      "G": "4*pi*Ds*Kpart*Ri*Ro/(Ro-Ri)",
+      "dRo_dNs": "vbar/(4*pi*Ro^2)>0",
+      "dG_dRo": "-4*pi*Ds*Kpart*Ri^2/(Ro-Ri)^2<0",
+      "exact_derivative_check": {
+        "name": "spherical shell conductance derivative",
+        "kind": "exact_rational_symbolic_identity",
+        "passed": true,
+        "residual": "0",
+        "identity": "(R-Ri)^2*d_R[C*Ri*R/(R-Ri)] = -C*Ri^2",
+        "assumptions": "C=4*pi*Ds*Kpart>0, R>Ri>0"
+      },
+      "bounds": "Ro>=Ro(Ns0)>Ri and 0<G(Ns)<=G(Ns0)"
+    },
+    "global_solution_proof": [
+      "The displayed face polynomials prove forward invariance of f,a,b,m,f_b>=0 and Ns>=Ns0.",
+      "The exact conserved total bounds every concentration and stored shell amount.",
+      "Ns>=Ns0>0 implies Ro-Ri>=Ro(Ns0)-Ri>0, so the vector field is smooth on a neighbourhood of the bounded invariant state set.",
+      "Local uniqueness and the ODE continuation theorem therefore give a unique solution for every finite future time; no state clipping or rollback is part of the equations."
+    ]
+  },
+  "shell_numerical_examples": {
+    "kind": "representative_numerical_RK4_integrations",
+    "passed": true,
+    "state_order": [
+      "f",
+      "a",
+      "b",
+      "m",
+      "Ns",
+      "f_b"
+    ],
+    "parameters": {
+      "Ri": 1.0,
+      "Vb_over_V": 2.0,
+      "vbar": 0.1,
+      "Ds": 0.002,
+      "Kpart": 0.8,
+      "k1": 0.4,
+      "k2": 0.3,
+      "k3": 0.7,
+      "kd": 0.2
+    },
+    "initial_state": [
+      0.6,
+      0.15,
+      0.12,
+      0.0,
+      0.4,
+      1.2
+    ],
+    "core_volume": 4.1887902047863905,
+    "reservoir_volume": 8.377580409572781,
+    "initial_total_amount": 14.097343969651495,
+    "runs": [
+      {
+        "step": 0.02,
+        "steps": 2000,
+        "end_time": 40.0,
+        "final_state": [
+          0.003748884828199182,
+          1.1232686443577609,
+          0.9715062200257499,
+          0.02262344862561267,
+          4.847259264932817,
+          0.043573929662373445
+        ],
+        "minimum_state_over_samples": [
+          0.003748884828199182,
+          0.15,
+          0.12,
+          0.0,
+          0.4,
+          0.043573929662373445
+        ],
+        "maximum_total_amount_residual": 1.0658141036401503e-14,
+        "minimum_shell_amount_increment": 1.2803675963346528e-06,
+        "final_outer_radius": 1.0371742172345964,
+        "final_conductance": 0.5609701163869291
+      },
+      {
+        "step": 0.01,
+        "steps": 4000,
+        "end_time": 40.0,
+        "final_state": [
+          0.003748884828104208,
+          1.1232686443560942,
+          0.9715062200239458,
+          0.022623448624876596,
+          4.847259264957981,
+          0.04357392966151824
+        ],
+        "minimum_state_over_samples": [
+          0.003748884828104208,
+          0.15,
+          0.12,
+          0.0,
+          0.4,
+          0.04357392966151824
+        ],
+        "maximum_total_amount_residual": 2.842170943040401e-14,
+        "minimum_shell_amount_increment": 3.183871252199211e-07,
+        "final_outer_radius": 1.0371742172347824,
+        "final_conductance": 0.5609701163842218
+      },
+      {
+        "step": 0.005,
+        "steps": 8000,
+        "end_time": 40.0,
+        "final_state": [
+          0.0037488848280983504,
+          1.1232686443559874,
+          0.971506220023846,
+          0.022623448624831347,
+          4.847259264959528,
+          0.043573929661465734
+        ],
+        "minimum_state_over_samples": [
+          0.0037488848280983504,
+          0.15,
+          0.12,
+          0.0,
+          0.4,
+          0.043573929661465734
+        ],
+        "maximum_total_amount_residual": 5.684341886080802e-14,
+        "minimum_shell_amount_increment": 7.938276430641267e-08,
+        "final_outer_radius": 1.037174217234794,
+        "final_conductance": 0.5609701163840537
+      }
+    ],
+    "successive_final_state_max_norm_differences": [
+      2.5163870986943948e-11,
+      1.5472068071176182e-12
+    ],
+    "observed_difference_ratio": 16.26406429391504,
+    "scope": "Numerical examples for the displayed well-mixed physical reactor ODE. Positivity/global existence follow from the separate analytic invariant-set proof. RK4 itself has no unconditional positivity assertion; no clipping was used."
+  },
+  "continuum_theorem_scope": {
+    "Einstein_scalar": "Smooth periodic initial h>0,K symmetric,phi,Pi satisfying Hamiltonian/momentum constraints; N0>0 and smooth shift with harmonic initial gauge derivatives; smooth V (massless reference V=0). Harmonic reduction yields unique local gauge-fixed smooth development; geometric uniqueness is modulo diffeomorphism. The exact FLRW profile is defined for all T>=0.",
+    "NSF_reference": "Periodic ideal-gas Navier-Stokes-Fourier data in H^s, s>=6, positive initial density/temperature, positive constant shear viscosity/conductivity and lambda_v>=0. Local strong solution theorem; an arbitrary numerical flux or arbitrary coupled PDE does not inherit that theorem automatically.",
+    "distinction": "Exact identity checks establish the particular identities. The stated standard local PDE theorems and the supplied ODE continuation argument provide their respective existence scopes. No universal global regularity statement for all PDE couplings is claimed."
+  },
+  "references": [
+    {
+      "citation": "E. Gourgoulhon, 3+1 Formalism and Bases of Numerical Relativity (2007)",
+      "url": "https://arxiv.org/abs/gr-qc/0703035",
+      "scope": "ADM signs, matter split and gauge"
+    },
+    {
+      "citation": "H. Friedrich and A. D. Rendall, The Cauchy Problem for the Einstein Equations (2000), sections 5.1-5.2",
+      "url": "https://arxiv.org/html/gr-qc/0002074",
+      "scope": "harmonic-map reduction, gauge propagation, geometric uniqueness"
+    },
+    {
+      "citation": "A. D. Rendall, Theorems on Existence and Global Dynamics for the Einstein Equations (2005), section 2.5",
+      "url": "https://arxiv.org/html/gr-qc/0505133",
+      "scope": "local existence with scalar matter"
+    },
+    {
+      "citation": "D. Basaric et al., Error estimates of a finite volume method for the compressible Navier-Stokes-Fourier system (2022), Appendix A",
+      "url": "https://arxiv.org/html/2210.15561",
+      "scope": "periodic smooth-data local NSF theory; additional hypotheses needed for numerical convergence"
+    }
+  ]
+}

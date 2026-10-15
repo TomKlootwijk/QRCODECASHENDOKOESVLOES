@@ -1,0 +1,300 @@
+{
+  "title": "XD-TAU v1.5 expanded physical closure verification",
+  "python_version": "3.13.5",
+  "numpy_version": "2.3.5",
+  "all_checks_passed": true,
+  "thermoelasticity": {
+    "passed": true,
+    "kind": "analytic_constitutive_closure_and_labelled_float_checks",
+    "samples": 64,
+    "seed": 20261013,
+    "coefficients": {
+      "rho0": 2.3,
+      "cv": 3.4,
+      "k": 0.8,
+      "mu": 1.7,
+      "lambda": 2.5,
+      "b": 0.013,
+      "theta0": 300.0
+    },
+    "maximum_absolute_residuals": {
+      "free_energy_F_derivative": 1.7367259366740662e-09,
+      "entropy_theta_derivative": 1.6308915729013052e-07,
+      "W_plus_theta_eta_identity": 5.684341886080802e-14,
+      "fundamental_energy_rate_identity": 1.7763568394002505e-15,
+      "energy_rate_finite_difference": 2.2595749893383754e-07,
+      "heat_equation_energy_balance": 4.440892098500626e-16,
+      "frame_indifference_W": 1.7763568394002505e-15,
+      "frame_indifference_P": 1.4432899320127035e-15
+    },
+    "minimum_J": 0.6355957458183544,
+    "minimum_reference_conductivity_eigenvalue": 0.5122791380966331,
+    "minimum_conductive_entropy_production": 6.666363248258083e-06,
+    "exact_formal_cancellation_coefficients": {
+      "b*lnJ*Tdot": "0",
+      "C*ln(T/T0)*Tdot": "0"
+    },
+    "definitions": {
+      "W": "mu/2*(tr(F.T*F)-3-2*lnJ)+lambda/2*(lnJ)^2-b*(theta-theta0)*lnJ+rho0*cv*(theta-theta0-theta*ln(theta/theta0))",
+      "P": "mu*(F-F^-T)+(lambda*lnJ-b*(theta-theta0))*F^-T",
+      "entropy_per_reference_volume": "eta=b*lnJ+rho0*cv*ln(theta/theta0)",
+      "internal_energy_reference": "e0=W+theta*eta=Wmechanical+b*theta0*lnJ+rho0*cv*(theta-theta0)",
+      "reference_heat_flux": "Q0=-J*k*F^-1*F^-T*Grad(theta)",
+      "momentum": "rho0*chi_tt=Div(P)+rho0*b_ext",
+      "temperature": "rho0*cv*theta_t=Div(J*k*F^-1*F^-T*Grad(theta))-b*theta*tr(F^-1*F_t)+r0",
+      "total_energy": "d_t(0.5*rho0*|chi_t|^2+e0)=Div(P.T*chi_t-Q0)+rho0*b_ext dot chi_t+r0"
+    },
+    "domain_and_data": "J>0,theta>0,rho0,cv,k,mu,lambda,theta0>0; smooth reference solid; prescribe chi0,chi_t0,theta_init and compatible mechanical/thermal boundary data. Clamped chi=X and theta=theta0 give a reference BC. Pressure traction is P*N=-p_b*J*F^-T*N.",
+    "theorem_scope": "Thermodynamic identities and positive conductivity are exact within the stated domain. The W_FF rank-one tangent is positive at reference equilibrium and locally nearby. A classical local PDE theorem needs regularity, compatibility and strong ellipticity near equilibrium; these finite constitutive checks do not prove global nonlinear thermoelastic existence."
+  },
+  "moving_mesh_ALE": {
+    "passed": true,
+    "kind": "specified_ALE_stage_and_representative_float_integrations",
+    "N": 32,
+    "time_step": 0.0005,
+    "steps": 400,
+    "end_time": 0.2,
+    "epsilon": 0.04,
+    "omega": 2.0,
+    "gamma": 1.4,
+    "mesh": "xi_i(t)=i/N+epsilon*sin(2*pi*i/N)*sin(omega*t), i=0,...,N",
+    "analytic_minimum_mesh_Jacobian": 0.7486725877128165,
+    "exact_swept_face_rule": "Delta_xface=xi_i(t+h)-xi_i(t); wface=Delta_xface/h",
+    "maximum_mass_momentum_energy_residuals": [
+      7.771561172376096e-16,
+      2.7755575615628914e-16,
+      1.7763568394002505e-15
+    ],
+    "maximum_constant_state_residual": 3.552713678800501e-15,
+    "maximum_GCL_residual": 0.0,
+    "maximum_positive_cone_decomposition_residual": 2.7755575615628914e-17,
+    "minimum_density": 0.7362908354730565,
+    "minimum_internal_energy_density": 2.1320426177580485,
+    "minimum_self_coefficient": 0.027462979313231977,
+    "minimum_cell_volume": 0.028211130008000684,
+    "minimum_neighbor_cone_density": 0.9466003873515361,
+    "minimum_neighbor_cone_internal_energy": 1.8847550582664103,
+    "positivity_proof": [
+      "Vnew*Unew=s_i*Ui+(h/2)*sum_faces A_f*B_jf, s_i=Vi-(h/2)*sum A_f*(alpha_f-w_f).",
+      "B_jf=(alpha_f+w_f)*Uj-F_n(Uj) has density b*rho, b=alpha+w-v_n>=c>0, and internal energy b*rho*e-p^2/(2*rho*b)>0 for gamma>1.",
+      "Admissible Euler states form a convex cone. Vnew>0 and s_i>=0 prove stage positivity, without clipping. Opposite shared fluxes conserve all three amounts; exact swept displacements give GCL."
+    ],
+    "scope": "This is a moving 1-D periodic Euler profile with proved algebraic step domain and measured roundoff. It does not establish full coupled 3-D ALE/FSI convergence or arbitrary-step positivity. The verification assertions do not change the evolution map."
+  },
+  "interface_motion": {
+    "passed": true,
+    "kind": "manufactured_material_advection_and_shell_accretion_identity",
+    "samples": 400,
+    "source_initial_field": "Phi0(X)=sum_j (X_j/a_j)^2-1, axes=(0.7,1.1,0.9)",
+    "material_map": "chi_t(X)=u*t+R_z(omega*t)*X",
+    "velocity": "v(x,t)=u+Omega_cross*(x-u*t)",
+    "evolved_field": "Phi(x,t)=Phi0(R_z(omega*t)^T*(x-u*t))",
+    "maximum_analytic_advection_residual": 3.566591466608315e-15,
+    "maximum_time_derivative_finite_difference_residual": 4.376122575422414e-09,
+    "maximum_gradient_finite_difference_residual": 3.064849707357098e-09,
+    "maximum_material_surface_residual": 6.661338147750939e-16,
+    "volume": "4*pi*a1*a2*a3/3 is invariant; det(R)=1",
+    "shell_outer_speed": "Ro_dot=vbar*V*kd*m/(4*pi*Ro^2)",
+    "shell_accretion_volume_residual": 0.0,
+    "shell_level_set": "Phi_o=|x|-Ro(t), Phi_o,t+Ro_dot*|Grad(Phi_o)|=0 at outer regular surface; inner radius fixed",
+    "scope": "Rigid-motion velocity is globally Lipschitz and its flow a global diffeomorphism, so this advection problem is fully specified. The separate shell formula describes surface accretion and does not silently reinterpret growth as mass-preserving bulk deformation."
+  },
+  "shell_modal_stability": {
+    "passed": true,
+    "kind": "finite_calibrated_shell_modal_stability_profile",
+    "M": [
+      [
+        2.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        3.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        4.0
+      ]
+    ],
+    "C": [
+      [
+        0.2,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.3,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.4
+      ]
+    ],
+    "K0": [
+      [
+        12.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        20.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        35.0
+      ]
+    ],
+    "G_pressure": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.5,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        2.0
+      ]
+    ],
+    "pressure": 4.0,
+    "critical_pressure_for_this_modal_profile": 12.0,
+    "equation": "M*q_tt+C*q_t+(K0-p*G)*q=f; modal variables are physical displacements",
+    "coefficient_units": "M kg; C kg/s; K0 N/m; p Pa; G m; q m",
+    "energy_proof": "For fixed p with K0-pG positive definite, H=0.5*q_t^T*M*q_t+0.5*q^T*(K0-pG)*q is positive definite and Hdot=-q_t^T*C*q_t+q_t^T*f. This proves finite-model Lyapunov stability; C>0 gives asymptotic stability.",
+    "pressure_domain": "p<pcrit for the positive-pressure reference; pcrit=min_j K0_jj/G_jj=12 Pa here",
+    "midpoint_steps": 1000,
+    "step": 0.03,
+    "maximum_combined_energy_residual": 2.9976021664879227e-15,
+    "minimum_heat_deposit": 2.1180638314873873e-06,
+    "unstable_test_pressure": 13.0,
+    "unstable_test_positive_growth_eigenvalue": 0.6588723439378913,
+    "scope": "The matrices define a finite shell-mode model and its exact threshold. They are prescribed calibration data, not a derived buckling threshold for every real shell, geometry, material or load."
+  },
+  "inhomogeneous_ADM_initial_data": {
+    "passed": true,
+    "kind": "continuum_constraint_construction_and_labelled_discrete_elliptic_profiles",
+    "manifold": "flat reference T^3 with each period 2*pi",
+    "parameters": {
+      "Aphi": 0.03,
+      "s": 0.5,
+      "kappa": 1.5
+    },
+    "free_data": "Atilde=diag(s,-s,0), constant trace-free divergence-free; phi0=Aphi*sin(x); Pi0=0; scalar V=0",
+    "constructed_data": "h_ij=psi^4*delta_ij; K_ij=psi^-2*Atilde_ij+(kappa/3)*h_ij; N0=1,beta0=0 with harmonic time derivatives",
+    "elliptic_equation": "Delta psi+(|Atilde|^2/8)*psi^-7+pi*|Grad phi0|^2*psi-(kappa^2/12)*psi^5=0",
+    "existence_proof": "a=|Atilde|^2/8>0,c=kappa^2/12>0. Small positive constants are subsolutions and large constants supersolutions. Elliptic monotone iteration gives a positive smooth periodic solution.",
+    "uniqueness_proof": "For u=ln psi the nonlinearity a*exp(-8u)+b(x)-c*exp(4u) is strictly decreasing. A positive maximum of the difference of two u solutions contradicts the maximum principle, since their gradients agree there.",
+    "constraint_derivation": "R(h)=-8*psi^-5*Delta psi; |K|^2=psi^-12*|Atilde|^2+kappa^2/3; rho=0.5*psi^-4*|Grad phi0|^2. Hamiltonian residual=-8*psi^-5*elliptic residual. The momentum constraint vanishes by constant TT Atilde, constant kappa and Pi0=0.",
+    "numerical_method": "periodic centered second difference in x; ten unconditional Newton iterations from constant psi0=(a/c)^(1/12), no clipping or line search",
+    "runs": [
+      {
+        "N": 32,
+        "iterations": 10,
+        "dx": 0.19634954084936207,
+        "minimum_Newton_iterate": 0.9125147547604939,
+        "minimum_psi": 0.9131090837128291,
+        "maximum_psi": 0.9135783338451959,
+        "maximum_discrete_elliptic_residual": 7.632783294297951e-15,
+        "maximum_discrete_Hamiltonian_residual": 9.619909036029384e-14,
+        "maximum_Hamiltonian_elliptic_relation_residual": 3.923863259904629e-16,
+        "Newton_residual_history": [
+          2.8759742878581296e-06,
+          4.617167759235485e-12,
+          9.950373858202965e-15,
+          8.271161533457416e-15,
+          6.647460359943125e-15,
+          5.35682609381638e-15,
+          6.314393452555578e-15,
+          9.367506770274758e-15,
+          9.992007221626409e-15,
+          7.632783294297951e-15
+        ]
+      },
+      {
+        "N": 64,
+        "iterations": 10,
+        "dx": 0.09817477042468103,
+        "minimum_Newton_iterate": 0.9125147547604939,
+        "minimum_psi": 0.9131107035906313,
+        "maximum_psi": 0.913576710042087,
+        "maximum_discrete_elliptic_residual": 3.82055498349132e-14,
+        "maximum_discrete_Hamiltonian_residual": 4.801367636808607e-13,
+        "maximum_Hamiltonian_elliptic_relation_residual": 4.777002647750908e-16,
+        "Newton_residual_history": [
+          2.8672325252249165e-06,
+          4.62907490117459e-12,
+          5.091760346687124e-14,
+          4.091171845743702e-14,
+          4.872491299323656e-14,
+          5.445643935786393e-14,
+          4.048150703539477e-14,
+          3.745614929329122e-14,
+          3.574918139293004e-14,
+          3.82055498349132e-14
+        ]
+      },
+      {
+        "N": 128,
+        "iterations": 10,
+        "dx": 0.04908738521234052,
+        "minimum_Newton_iterate": 0.9125147547604939,
+        "minimum_psi": 0.9131111070083613,
+        "maximum_psi": 0.9135763056559254,
+        "maximum_discrete_elliptic_residual": 1.9682866447823244e-13,
+        "maximum_discrete_Hamiltonian_residual": 2.474617732950435e-12,
+        "maximum_Hamiltonian_elliptic_relation_residual": 3.6908870629912935e-16,
+        "Newton_residual_history": [
+          2.8650576034405795e-06,
+          4.720265844859739e-12,
+          2.3775426072347727e-13,
+          2.0776436127079023e-13,
+          2.1671553440683056e-13,
+          1.839361996047728e-13,
+          1.6746326547689705e-13,
+          2.1921353621223716e-13,
+          2.4301394230263895e-13,
+          1.9682866447823244e-13
+        ]
+      }
+    ],
+    "successive_grid_solution_differences": [
+      1.6238031089743643e-06,
+      4.0438616233373637e-07
+    ],
+    "observed_refinement_ratio": 4.015476443613453,
+    "scope": "The analytic argument concerns the continuum initial constraints. Reported Newton residuals are for the discrete elliptic equation and are not exact continuum solutions. A unique local Einstein-scalar development follows from the separately specified harmonic Cauchy theorem; no universal future global theorem is asserted."
+  },
+  "references": [
+    {
+      "title": "Jiang and Racke, Evolution Equations in Thermoelasticity",
+      "url": "https://www.math.uni-konstanz.de/~racke/dvidat/bookjr.pdf"
+    },
+    {
+      "title": "Crandall, Ishii and Lions, User's Guide",
+      "url": "https://arxiv.org/abs/math/9207212"
+    },
+    {
+      "title": "Gourgoulhon, 3+1 Formalism",
+      "url": "https://arxiv.org/abs/gr-qc/0703035"
+    },
+    {
+      "title": "Friedrich and Rendall, Cauchy Problem for Einstein Equations",
+      "url": "https://arxiv.org/html/gr-qc/0002074"
+    }
+  ],
+  "proof_vs_computation": "Analytic identities/theorem domains are printed separately from finite-difference, Newton and integration measurements. No finite set of passing examples establishes convergence or global regularity of arbitrary PDE couplings."
+}

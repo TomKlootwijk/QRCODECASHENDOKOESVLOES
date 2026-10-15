@@ -1,0 +1,88 @@
+{
+  "suite": "XD-TAU v1.5 physical domain bridges",
+  "all_passed": true,
+  "checks": [
+    {
+      "name": "closed_absorption_emission_scattering",
+      "passed": true,
+      "steps": 300,
+      "max_energy_residual": 3.552713678800501e-15,
+      "minimum_inventory": 1.0992226108143046,
+      "proof": "positive elementary maps and telescoping balances; not continuum convergence"
+    },
+    {
+      "name": "physical_to_plume_diagnostic",
+      "passed": true,
+      "samples": 256,
+      "translation_equivariance_residual": 1.7763568394002505e-15,
+      "cap_radius": 1.3631042893263026,
+      "cap_tube_radius": 0.6253116607059725,
+      "scope": "derived geometric diagnostic of supplied fluid state"
+    },
+    {
+      "name": "discrete_scale_conductivity",
+      "passed": true,
+      "max_residual": 3.3306690738754696e-16,
+      "q": 23.140692632779267,
+      "scope": "conductivity coefficient only; not scale invariance of every solution"
+    },
+    {
+      "name": "scale_patterned_stationary_heat_entropy",
+      "passed": true,
+      "quadrature_errors": [
+        2.439168658718849e-10,
+        6.09793049388685e-11,
+        1.5244774193012844e-11
+      ],
+      "refinement_ratios": [
+        3.999994196660827,
+        4.0000136549623155
+      ],
+      "scope": "quadrature example; differential and boundary identities proved in document"
+    },
+    {
+      "name": "reconfigurable_orbital_formation",
+      "passed": true,
+      "equation_residual": 5.551115123125783e-17,
+      "finite_difference_power_residual": 2.949873678659287e-11,
+      "time_samples": 100,
+      "scope": "prescribed controlled trajectory with exact analytic acceleration and work identity"
+    },
+    {
+      "name": "passive_geometry_dependent_matched_beam",
+      "passed": true,
+      "max_power_identity_residual": 8.881784197001252e-16,
+      "sampled_competitor_margin": 0.0034418776011733154,
+      "channel_norm": 0.6,
+      "transmitted_power": 2.0,
+      "received_power": 0.72,
+      "general_proof": "Cauchy-Schwarz; normalized channel norm eta gives passive received power P eta^2"
+    },
+    {
+      "name": "zero_channel_and_zero_power_definitions",
+      "passed": true,
+      "zero_channel_output": 0.0,
+      "zero_power_output": 0.0
+    },
+    {
+      "name": "canonical_degenerate_graph_eigenmode",
+      "passed": true,
+      "eigenmode": [
+        0.8164965809277261,
+        -0.408248290463863,
+        -0.408248290463863
+      ],
+      "eigenvalue": 3.0,
+      "residual": 2.220446049250313e-16,
+      "proof": "first nonzero canonical-basis projection into selected eigenspace fixes degeneracy and sign"
+    },
+    {
+      "name": "positive_exact_radius_fitting_contraction",
+      "passed": true,
+      "exact_error_factor": "3486784401/1099511627776",
+      "iterations": 20,
+      "scope": "explicit convex quadratic radius objective; not generic nonconvex fitting convergence"
+    }
+  ],
+  "check_count": 9
+}
